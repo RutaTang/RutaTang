@@ -2,68 +2,13 @@
 
 }
 
-.app header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px 10px;
-}
-
-.app nav ul {
-  display: flex;
-}
-
-.app nav ul li{
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.app main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.app main section {
-  width: 60%;
-}
-
-.brief_section{
-  margin-top: 15%;
-}
-
 .contact_me{
   position: fixed;
   bottom: 0;
   left: 0;
 }
+
 .contact_me li{
   margin-bottom: 30px;
   cursor: pointer;
 }
-
-.outline{
-  position: fixed;
-  top: 30%;
-  right: 30px;
-}
-.outline li{
-  writing-mode: vertical-lr;
-  text-orientation: upright;
-  padding-bottom: 20px;
-}
-
-.about_me_section{
-  margin-top: 300px;
-}
-
-.education_section{
-  margin-top: 300px;
-}
-
-.icon{
-  font-size: 25px;
-  font-weight: bolder;
-}
-
