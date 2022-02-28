@@ -2,45 +2,61 @@ import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {BsList} from 'react-icons/bs'
 import {AiOutlineClose} from 'react-icons/ai'
-import {useSpring,animated} from '@react-spring/web'
+import {useSpring,animated,config, useTransition, useTrail, useSpringRef, useChain} from '@react-spring/web'
 
-const Links = ()=>{
-  return(
-    <>
-      <Link to="/">HOME</Link>
-      <Link to="/blog">BLOG</Link>
-      <Link to="/project">PROJECT</Link>
-      <Link to="/work-experience">WORK EXPERIENCE</Link>
-      <Link to="/contact-me">CONTACT ME</Link>
-      </>
-  )
-}
+
+const LINKS = [
+  {path:"/",name:"HOME"},
+  {path:"/blog",name:"BLOG"},
+  {path:"/project",name:"PROJECT"},
+  {path:"/work-experience",name:"WORK EXPERIENCE"},
+  {path:"/contact-me",name:"CONTACT ME"},
+]
 
 const Header = ()=> {
   const [isOpen, setIsOpen] = useState(false)
-  const menuOpacitySpring = useSpring({opacity: isOpen ? 1 : 0})
+  const [links, _] = useState(LINKS)
+  const menuOpacitySprintRef = useSpringRef()
+  const menuOpacitySpring = useSpring({ref:menuOpacitySprintRef,to:{opacity: isOpen ? 1 : 0, display:isOpen ? "block" : "none",}})
+  const trailSpringRef = useSpringRef()
+  const trailSpring = links.map((el,idx,arr)=>{
+    return useSpring({
+      ref:trailSpringRef,
+      to:{
+        opacity: isOpen ? 1 : 0,
+      },
+      delay: isOpen ? idx*100: (arr.length-idx)*80,
+    })
+  }) 
+  useChain(isOpen ? [menuOpacitySprintRef,trailSpringRef] : [trailSpringRef,menuOpacitySprintRef],isOpen? [0,0]: [0,0.6])
   return(
     <div className="flex justify-between items-center mx-5 mt-5">
       {/*Logo*/}
-      <img src="" alt="" />
+      {/*<img src="" alt="" />*/}
+      <h1 className='font-bold md:font-black text-xl md:text-3xl'>RUTA</h1>
       {/*Nav-desktop*/}
       <div className="text-black font-semibold space-x-10 hidden md:block">
-        <Links />
+        {links.map(e=>
+          <Link to={e.path} key={"nav"+e.name}>{e.name}</Link>
+        )}
       </div>
       {/*Nav-mobile*/}
       <button className='md:hidden'>
-        {!isOpen && <BsList className="text-black" onClick={()=>{setIsOpen(true)}}/>}
-        {/*Menu*/}
-        { isOpen &&
-          <animated.div style={menuOpacitySpring} className="w-screen h-screen absolute left-0 top-0 bg-white">
-            <div className='flex flex-col'>
-              <AiOutlineClose className="self-end mr-5 mt-5" onClick={()=>{setIsOpen(false)}}/>
-              <div className='flex flex-col space-y-10 mt-5'>
-                <Links />
-              </div>
+        {!isOpen && <BsList className="text-black text-xl" onClick={()=>{setIsOpen(true)}}/>}
+        <animated.div style={menuOpacitySpring} className="w-screen h-screen absolute left-0 top-0 bg-white">
+          <div className='flex flex-col'>
+            <AiOutlineClose className="self-end mr-5 mt-5 text-xl" onClick={()=>{setIsOpen(false)}}/>
+            <div className='flex flex-col space-y-10 mt-5'>
+              {
+              trailSpring.map((style, index) => (
+                <animated.div key={index} style={style}>
+                  <Link to={links[index].path}>{links[index].name}</Link>
+                </animated.div>
+              ))
+              }
             </div>
-          </animated.div>
-        }
+          </div>
+        </animated.div>
       </button>
     </div>
   )
