@@ -30,10 +30,10 @@ const Header = ()=> {
   }) 
   useChain(isOpen ? [menuOpacitySprintRef,trailSpringRef] : [trailSpringRef,menuOpacitySprintRef],isOpen? [0,0]: [0,0.6])
   return(
-    <div className="flex justify-between items-center mx-5 mt-5">
+    <div className="flex justify-between items-center px-10 mt-5">
       {/*Logo*/}
       {/*<img src="" alt="" />*/}
-      <h1 className='font-bold md:font-black text-xl md:text-3xl'>RUTA</h1>
+      <h1 className='font-bold md:font-black text-xl md:text-2xl'>RUTA</h1>
       {/*Nav-desktop*/}
       <div className="text-black font-semibold space-x-10 hidden md:block">
         {links.map(e=>
