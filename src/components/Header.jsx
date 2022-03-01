@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {BsList} from 'react-icons/bs'
 import {AiOutlineClose} from 'react-icons/ai'
-import {useSpring,animated,config, useTransition, useTrail, useSpringRef, useChain} from '@react-spring/web'
+import {useSpring,animated,config, useSpringRef, useChain} from '@react-spring/web'
 
 
 const LINKS = [
@@ -25,10 +25,10 @@ const Header = ()=> {
       to:{
         opacity: isOpen ? 1 : 0,
       },
-      delay: isOpen ? idx*100: (arr.length-idx)*80,
+      delay: isOpen ? idx*50: (arr.length-idx)*20,
     })
   }) 
-  useChain(isOpen ? [menuOpacitySprintRef,trailSpringRef] : [trailSpringRef,menuOpacitySprintRef],isOpen? [0,0]: [0,0.6])
+  useChain(isOpen ? [menuOpacitySprintRef,trailSpringRef] : [trailSpringRef,menuOpacitySprintRef],isOpen? [0,0]: [0,0.25])
   return(
     <div className="flex justify-between items-center px-10 mt-5">
       {/*Logo*/}
@@ -43,9 +43,9 @@ const Header = ()=> {
       {/*Nav-mobile*/}
       <button className='md:hidden'>
         {!isOpen && <BsList className="text-black text-xl" onClick={()=>{setIsOpen(true)}}/>}
-        <animated.div style={menuOpacitySpring} className="w-screen h-screen absolute left-0 top-0 bg-white">
+        <animated.div style={menuOpacitySpring} className="w-screen h-screen absolute left-0 top-0 bg-white z-10">
           <div className='flex flex-col'>
-            <AiOutlineClose className="self-end mr-5 mt-5 text-xl" onClick={()=>{setIsOpen(false)}}/>
+            <AiOutlineClose className="self-end mr-10 mt-5 text-xl" onClick={()=>{setIsOpen(false)}}/>
             <div className='flex flex-col space-y-10 mt-5'>
               {
               trailSpring.map((style, index) => (

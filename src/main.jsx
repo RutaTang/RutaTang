@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 import './index.css'
-import Home from './Home'
+import Home from './pages/Home'
 
 ReactDOM.render(
   <BrowserRouter>
