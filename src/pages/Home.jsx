@@ -26,12 +26,12 @@ const STACK_ICONS = [
 ]
 
 function Home() {
-  const logoRabbitStyle = useSpring({to:{opacity:1,transform:'scale(1)'},from:{opacity:0,transform:'scale(0.3)'},config:{...config.wobbly}})
+  const logoRabbitStyle = useSpring({to:{opacity:1,transform:'scale(1)'},from:{opacity:0,transform:'scale(0.3)'},delay:300,config:{...config.wobbly}})
   return (
     <div>
       <Header/>
       {/*Introduction*/}       
-      <div className="flex flex-wrap justify-center flex-col items-center w-[85vw] mx-auto md:mx-0 h-[95vh] space-y-16 md:flex-row md:justify-around md:relative -top-5">
+      <div className="flex flex-wrap justify-center flex-col items-center w-[85vw] mx-auto md:mx-0 h-[95vh] space-y-16 md:flex-row md:justify-around md:relative">
         <div className='space-y-7 md:w-1/2 md:space-y-10'>
           <p className='text-gray-500'>Hi, I am <span className='text-blue-400 font-bold text-xl'>Weizhi Tang </span>also call me</p>
           <h1 className='text-4xl font-black md:text-6xl'>Ruta Tang</h1>
