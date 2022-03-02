@@ -1,5 +1,29 @@
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import {useSpring,animated,config} from '@react-spring/web'
+
+
+const STACK_ICONS_BASE = "/stack_icons/"
+const STACK_ICONS_TYPE = ".png"
+const STACK_ICONS = [
+  {name:"React.js",path:`${STACK_ICONS_BASE}reactjs${STACK_ICONS_TYPE}`},
+  {name:"Html 5",path:`${STACK_ICONS_BASE}html5${STACK_ICONS_TYPE}`},
+  {name:"CSS 5",path:`${STACK_ICONS_BASE}css3${STACK_ICONS_TYPE}`},
+  {name:"JavaScript",path:`${STACK_ICONS_BASE}javascript${STACK_ICONS_TYPE}`},
+  {name:"Deno",path:`${STACK_ICONS_BASE}deno${STACK_ICONS_TYPE}`},
+  {name:"Python",path:`${STACK_ICONS_BASE}python${STACK_ICONS_TYPE}`},
+  {name:"TypeScript",path:`${STACK_ICONS_BASE}typescript${STACK_ICONS_TYPE}`},
+  {name:"Babel",path:`${STACK_ICONS_BASE}babel${STACK_ICONS_TYPE}`},
+  {name:"Lua",path:`${STACK_ICONS_BASE}lua${STACK_ICONS_TYPE}`},
+  {name:"Rust",path:`${STACK_ICONS_BASE}rust${STACK_ICONS_TYPE}`},
+  {name:"Vite",path:`${STACK_ICONS_BASE}vite${STACK_ICONS_TYPE}`},
+  {name:"Prettier",path:`${STACK_ICONS_BASE}prettier${STACK_ICONS_TYPE}`},
+  {name:"NeoVim",path:`${STACK_ICONS_BASE}neovim${STACK_ICONS_TYPE}`},
+  {name:"Tailwind CSS",path:`${STACK_ICONS_BASE}tailwind-css${STACK_ICONS_TYPE}`},
+  {name:"Post CSS",path:`${STACK_ICONS_BASE}postcss${STACK_ICONS_TYPE}`},
+  {name:"Solidity",path:`${STACK_ICONS_BASE}solidity${STACK_ICONS_TYPE}`},
+  {name:"Pytorch",path:`${STACK_ICONS_BASE}pytorch${STACK_ICONS_TYPE}`},
+]
 
 function Home() {
   const logoRabbitStyle = useSpring({to:{opacity:1,transform:'scale(1)'},from:{opacity:0,transform:'scale(0.3)'},config:{...config.wobbly}})
@@ -66,6 +90,20 @@ function Home() {
           </div>
         </div>
       </div>
+      {/*Tech Stack*/}
+      <div className='w-[85vw] mx-auto mt-[15vh] md:mt-[30vh]'>
+        <h1 className='text-2xl font-bold'>TECH STACK</h1>
+        <div className='flex flex-row flex-wrap mt-10 gap-y-10 items-center justify-center md:justify-start'>
+          {STACK_ICONS.map(el =>
+            <div key={el.name} className='flex flex-col items-center w-[120px] h-[120px] gap-3'>
+              <img className='w-[80px] h-[80px]' src={el.path} alt="" />
+              <p>{el.name}</p>
+            </div>
+          )}
+        </div>
+      </div>
+      {/*Footer*/}
+      <Footer mt="10rem"/>
     </div>
   )
 }
