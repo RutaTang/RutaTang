@@ -1,0 +1,14 @@
+{
+  "name": "Ruta Blog",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/atomic.png",
+	  "sizes": "186x186",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
