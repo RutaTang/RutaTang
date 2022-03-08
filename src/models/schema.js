@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Field": {
-            "name": "Field",
+        "Post": {
+            "name": "Post",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,39 +10,46 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "title": {
+                    "name": "title",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "Tags": {
-                    "name": "Tags",
-                    "isArray": true,
-                    "type": {
-                        "model": "FieldTag"
-                    },
+                "cover": {
+                    "name": "cover",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "field"
-                    }
+                    "attributes": []
                 },
-                "BlogPosts": {
-                    "name": "BlogPosts",
+                "content": {
+                    "name": "content",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "tags": {
+                    "name": "tags",
                     "isArray": true,
                     "type": {
-                        "model": "FieldBlogPost"
+                        "model": "TagPost"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "field"
+                        "associatedWith": "post"
                     }
                 },
                 "createdAt": {
@@ -63,7 +70,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Fields",
+            "pluralName": "Posts",
             "attributes": [
                 {
                     "type": "model",
@@ -76,9 +83,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -104,25 +108,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "fields": {
-                    "name": "fields",
+                "Posts": {
+                    "name": "Posts",
                     "isArray": true,
                     "type": {
-                        "model": "FieldTag"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "tag"
-                    }
-                },
-                "BlogPosts": {
-                    "name": "BlogPosts",
-                    "isArray": true,
-                    "type": {
-                        "model": "TagBlogPost"
+                        "model": "TagPost"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -163,9 +153,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             }
@@ -174,8 +161,8 @@ export const schema = {
                 }
             ]
         },
-        "BlogPost": {
-            "name": "BlogPost",
+        "TagPost": {
+            "name": "TagPost",
             "fields": {
                 "id": {
                     "name": "id",
@@ -184,155 +171,17 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "title": {
-                    "name": "title",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "create_datetime": {
-                    "name": "create_datetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "publish_datetime": {
-                    "name": "publish_datetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "update_datetim": {
-                    "name": "update_datetim",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "delete_datetime": {
-                    "name": "delete_datetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "visibility": {
-                    "name": "visibility",
+                "post": {
+                    "name": "post",
                     "isArray": false,
                     "type": {
-                        "enum": "Visibility"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "cover": {
-                    "name": "cover",
-                    "isArray": false,
-                    "type": "AWSURL",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "content": {
-                    "name": "content",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "fields": {
-                    "name": "fields",
-                    "isArray": true,
-                    "type": {
-                        "model": "FieldBlogPost"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "blogPost"
-                    }
-                },
-                "tags": {
-                    "name": "tags",
-                    "isArray": true,
-                    "type": {
-                        "model": "TagBlogPost"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "blogPost"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "BlogPosts",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "FieldTag": {
-            "name": "FieldTag",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "field": {
-                    "name": "field",
-                    "isArray": false,
-                    "type": {
-                        "model": "Field"
+                        "model": "Post"
                     },
                     "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "fieldID"
+                        "targetName": "postID"
                     }
                 },
                 "tag": {
@@ -366,131 +215,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "FieldTags",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                }
-            ]
-        },
-        "FieldBlogPost": {
-            "name": "FieldBlogPost",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "field": {
-                    "name": "field",
-                    "isArray": false,
-                    "type": {
-                        "model": "Field"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "fieldID"
-                    }
-                },
-                "blogPost": {
-                    "name": "blogPost",
-                    "isArray": false,
-                    "type": {
-                        "model": "BlogPost"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "blogPostID"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "FieldBlogPosts",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                }
-            ]
-        },
-        "TagBlogPost": {
-            "name": "TagBlogPost",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "tag": {
-                    "name": "tag",
-                    "isArray": false,
-                    "type": {
-                        "model": "Tag"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "tagID"
-                    }
-                },
-                "blogPost": {
-                    "name": "blogPost",
-                    "isArray": false,
-                    "type": {
-                        "model": "BlogPost"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "blogPostID"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "TagBlogPosts",
+            "pluralName": "TagPosts",
             "attributes": [
                 {
                     "type": "model",
@@ -499,15 +224,7 @@ export const schema = {
             ]
         }
     },
-    "enums": {
-        "Visibility": {
-            "name": "Visibility",
-            "values": [
-                "PUBLIC",
-                "PRIVATE"
-            ]
-        }
-    },
+    "enums": {},
     "nonModels": {},
-    "version": "e848e3c172d18726e6e587d9ab4d40e2"
+    "version": "072586cca0654b38eaea248e14fbf1bd"
 };

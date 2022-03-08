@@ -2,19 +2,12 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
-const Visibility = {
-  "PUBLIC": "PUBLIC",
-  "PRIVATE": "PRIVATE"
-};
 
-const { Field, Tag, BlogPost, FieldTag, FieldBlogPost, TagBlogPost } = initSchema(schema);
+
+const { Post, Tag, TagPost } = initSchema(schema);
 
 export {
-  Field,
+  Post,
   Tag,
-  BlogPost,
-  FieldTag,
-  FieldBlogPost,
-  TagBlogPost,
-  Visibility
+  TagPost
 };
