@@ -2,7 +2,7 @@ import {useState,useEffect,useMemo} from 'react'
 import {FaWifi,FaSearch} from 'react-icons/fa'
 import {AiFillWindows, AiOutlineClose,AiOutlinePlus} from 'react-icons/ai'
 
-import { DataStore, Predicates } from 'aws-amplify';
+import { DataStore, Predicates,Hub } from 'aws-amplify';
 import {TagPost,Tag,Post} from '../models'
 
 import Header from '../components/Header'
@@ -71,6 +71,24 @@ const Blog = ()=>{
 		});
 	}
 
+	const setUI = ()=>{
+		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
+			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+			setPosts(uniquePosts(posts.map(prettyPost)))
+			setCachePosts(uniquePosts(posts.map(prettyPost)))
+		})
+	}
+
+	useEffect(()=>{
+		const listener = Hub.listen('datastore', async hubData => {
+			const  { event, data } = hubData.payload;
+			if (event === 'ready' || event === 'modelSynced') {
+				setUI()
+			}
+		})
+		return listener
+	})
+
 	useEffect(()=>{
 		const unselectedTags = tags.filter(tag=>!selectedTags.includes(tag))
 		setTags([...selectedTags,...unselectedTags,])
@@ -88,16 +106,12 @@ const Blog = ()=>{
 		},[selectedTags])
 
 	useEffect(()=>{
-		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
-			setPosts(uniquePosts(posts.map(prettyPost)))
-			setCachePosts(uniquePosts(posts.map(prettyPost)))
-		})
+		setUI()
 	},[])
 
 	return (
 		<div className='w-screen h-screen'>
-			<Header />
+		<Header />
 			<div className='w-[80%] mx-auto mt-20 pb-20'>
 				{/*Decorator*/}
 				<div className="flex md:flex-row flex-col justify-between items-center gap-20 mt-10">
@@ -105,7 +119,7 @@ const Blog = ()=>{
 						<FaWifi className='md:-rotate-45'/>
 						<p>Lifelong Learning</p>
 						<p className='md:self-end'>Consolidating With Writing</p>
-						<p>Never Stopping</p>
+					<p>Never Stopping</p>
 					</div>
 					<div className='basis-1/2'>
 						<img src="/svgs/dna.svg" alt="" />
@@ -161,7 +175,7 @@ const Blog = ()=>{
 					}
 				</div>
 			</div>
-		<Footer />
+			<Footer />
 		</div>
 	)
 }
