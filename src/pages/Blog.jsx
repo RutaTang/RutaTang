@@ -157,24 +157,15 @@ const Blog = ()=>{
 						))
 						}
 					</div>
-					{ 
-					selectedTags.length === 0 ? 
-						(
-							<div className='flex flex-row justify-center mt-12'>
-								<button onClick={()=>{setNumberOfPostsToShow(p=>p+5)}} className='flex flex-row justify-between items-center text-black border-2 border-gray-300 px-5 py-2 rounded-lg'>
-									<AiOutlinePlus className='text-xl font-bold'/>
-									<p className='ml-2'>Load More Articles</p>
-								</button>
-							</div>
-						)
-						:
-						(
-							<></>
-					)
-					}
+					<div className='flex flex-row justify-center mt-12'>
+						<button onClick={()=>{setNumberOfPostsToShow(p=>p+5)}} className='flex flex-row justify-between items-center text-black border-2 border-gray-300 px-5 py-2 rounded-lg'>
+							<AiOutlinePlus className='text-xl font-bold'/>
+							<p className='ml-2'>Load More Articles</p>
+						</button>
+					</div>
 				</div>
 			</div>
-		<Footer />
+			<Footer />
 		</div>
 	)
 }
