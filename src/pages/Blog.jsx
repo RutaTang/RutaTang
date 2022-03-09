@@ -56,36 +56,30 @@ function prettyPost(post){
 }
 
 const Blog = ()=>{
-	const [tags,setTags] = useState([])
+	const [unSelectedTags,setUnSelectedTags] = useState([])
 	const [selectedTags,setSelectedTags] = useState([])
-	const [cacheTags,setCacheTags] = useState([])
 	const [posts,setPosts] = useState([])
-	const isMobile = window.innerWidth < 768
 	const [cachePosts,setCachePosts] = useState([])
 	const [numberOfPostsToShow,setNumberOfPostsToShow] = useState(10)
+	const [syncTimes,setSyncTimes] = useState(0)
+	const isMobile = window.innerWidth < 768
 
-
-	const clickTag = (tag)=>{
-		setSelectedTags(ps_tags=>{
-			if(ps_tags.map(tag=>tag.id).includes(tag.id)){
-				return ps_tags.filter(ps_tag=>ps_tag.id!==tag.id)
-			}else{
-				return [...ps_tags,tag]
-			}
-		});
+	const selectTag = (tag)=>{
+		if(selectedTags.find(t=>t.id===tag.id)){
+			setSelectedTags(selectedTags.filter(t=>t.id!==tag.id))
+			setUnSelectedTags([...unSelectedTags,tag])
+		}else{
+			setSelectedTags([...selectedTags,tag])
+			setUnSelectedTags(unSelectedTags.filter(t=>t.id!==tag.id))
+		}
 	}
 
-	// load data and put to each caches if sync is done
 	useEffect(()=>{
 		const listener = Hub.listen('datastore', async hubData => {
 			const  { event, data } = hubData.payload;
 			if (event === 'ready') {
 				console.log('sync is done')
-				// update all caches if sync is done
-				fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-					setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
-					setCachePosts(removeRedundancyById(posts.map(prettyPost)))
-				})
+				setSyncTimes(syncTimes+1)
 			}
 		})
 		return listener
@@ -93,30 +87,15 @@ const Blog = ()=>{
 
 	useEffect(()=>{
 		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+			const selectedTagIds = selectedTags.map(tag=>tag.id)
+			const unSelectedTagIds = unSelectedTags.map(tag=>tag.id)
+			const newFectedTags = tagsWithPosts.map(tag=>prettyTag(tag)).filter(tag=>!selectedTagIds.includes(tag.id)).filter(tag=>!unSelectedTagIds.includes(tag.id))
+			setUnSelectedTags(p=>[...p,...newFectedTags])
+
 			setPosts(removeRedundancyById(posts.map(prettyPost)))
-			setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
 			setCachePosts(removeRedundancyById(posts.map(prettyPost)))
 		})
-	},[])
-
-	const updateTags = ()=>{
-		setTags(p_tags=>{
-			const unselectedTags = p_tags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
-			return [...selectedTags,...unselectedTags,]
-		})
-	}
-
-	useEffect(()=>{
-		//find diff between current tags and cache tags, push new tags to end of current tags 
-		const newTags = cacheTags.filter(tag=>!tags.map(_tag=>_tag.id).includes(tag.id))
-		setTags([...tags,...newTags])
-		updateTags()
-		},[cacheTags])
-
-	useEffect(()=>{
-		updateTags()
-		},[selectedTags])
+		},[syncTimes])
 
 	useEffect(()=>{
 		if (selectedTags.length===0){
@@ -153,8 +132,8 @@ const Blog = ()=>{
 						<AiOutlineClose/>
 					</div>
 					<div className='flex flex-row flex-wrap justify-center gap-5 mt-6'>
-						{tags.map( tag => 
-							<animated.div  key={`tag-${tag.id}`} onClick={()=>{ clickTag(tag) }} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
+						{[...selectedTags,...unSelectedTags].map( tag => 
+							<animated.div  key={`tag-${tag.id}`} onClick={()=>{selectTag(tag)}} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
 								<p>{tag.name}</p>
 							</animated.div>
 						)}
