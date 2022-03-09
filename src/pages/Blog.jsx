@@ -38,7 +38,7 @@ function prettyTag(tag){
 	return {
 		id:tag.id,
 		name:tag.name,
-		posts:tag.posts,
+		posts:tag.posts.map(prettyPost),
 	}
 }
 
@@ -56,6 +56,7 @@ function prettyPost(post){
 const Blog = ()=>{
 	const [tags,setTags] = useState([])
 	const [selectedTags,setSelectedTags] = useState([])
+	const [cacheTags,setCacheTags] = useState([])
 	const [posts,setPosts] = useState([])
 	const isMobile = window.innerWidth < 768
 	const [cachePosts,setCachePosts] = useState([])
@@ -71,26 +72,48 @@ const Blog = ()=>{
 		});
 	}
 
-	const setUI = ()=>{
+	const setCaches = ()=>{
 		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
-			setPosts(uniquePosts(posts.map(prettyPost)))
+			setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
 			setCachePosts(uniquePosts(posts.map(prettyPost)))
 		})
 	}
 
 	useEffect(()=>{
+		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
+			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+			setPosts(uniquePosts(posts.map(prettyPost)))
+		})
+	},[])
+
+	useEffect(()=>{
+		const unselectedTags = cacheTags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
+		setTags([...selectedTags,...unselectedTags,])
+	},[cacheTags])
+
+	useEffect(()=>{
+		if (selectedTags.length===0){
+			setPosts(cachePosts)
+		}else{
+			const posts = selectedTags.reduce((acc,tag)=>{
+				return [...acc,...tag.posts]
+			},[])
+			setPosts(uniquePosts(posts))
+		}
+	},[cachePosts])
+
+	useEffect(()=>{
 		const listener = Hub.listen('datastore', async hubData => {
 			const  { event, data } = hubData.payload;
-			if (event === 'ready' || event === 'modelSynced') {
-				setUI()
+			if (event === 'ready') {
+				setCaches()
 			}
 		})
 		return listener
-	})
+	},[])
 
 	useEffect(()=>{
-		const unselectedTags = tags.filter(tag=>!selectedTags.includes(tag))
+		const unselectedTags = tags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
 		setTags([...selectedTags,...unselectedTags,])
 		},[selectedTags])
 
@@ -105,9 +128,6 @@ const Blog = ()=>{
 		}
 		},[selectedTags])
 
-	useEffect(()=>{
-		setUI()
-	},[])
 
 	return (
 		<div className='w-screen h-screen'>
