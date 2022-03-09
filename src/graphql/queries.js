@@ -1,117 +1,53 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncBlogs = /* GraphQL */ `
-  query SyncBlogs(
-    $filter: ModelBlogFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncBlogs(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      cover
+      content
+      description
+      tags {
         items {
           id
-          content
+          postID
+          tagID
+          post {
+            id
+            title
+            cover
+            content
+            description
+            tags {
+              nextToken
+              startedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          tag {
+            id
+            name
+            Posts {
+              nextToken
+              startedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
         }
         nextToken
         startedAt
@@ -121,7 +57,6 @@ export const getPost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
     }
   }
 `;
@@ -135,16 +70,41 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
+        cover
+        content
+        description
+        tags {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           nextToken
           startedAt
         }
@@ -153,7 +113,6 @@ export const listPosts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        blogPostsId
       }
       nextToken
       startedAt
@@ -176,16 +135,41 @@ export const syncPosts = /* GraphQL */ `
       items {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
+        cover
+        content
+        description
+        tags {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           nextToken
           startedAt
         }
@@ -194,90 +178,132 @@ export const syncPosts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        blogPostsId
       }
       nextToken
       startedAt
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getTag = /* GraphQL */ `
+  query GetTag($id: ID!) {
+    getTag(id: $id) {
       id
-      post {
-        id
-        title
-        blog {
+      name
+      Posts {
+        items {
           id
-          name
+          postID
+          tagID
+          post {
+            id
+            title
+            cover
+            content
+            description
+            tags {
+              nextToken
+              startedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          tag {
+            id
+            name
+            Posts {
+              nextToken
+              startedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
+        nextToken
+        startedAt
       }
-      content
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listTags = /* GraphQL */ `
+  query ListTags(
+    $filter: ModelTagFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        post {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
+        name
+        Posts {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
         }
-        content
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        postCommentsId
       }
       nextToken
       startedAt
     }
   }
 `;
-export const syncComments = /* GraphQL */ `
-  query SyncComments(
-    $filter: ModelCommentFilterInput
+export const syncTags = /* GraphQL */ `
+  query SyncTags(
+    $filter: ModelTagFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncComments(
+    syncTags(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -285,23 +311,300 @@ export const syncComments = /* GraphQL */ `
     ) {
       items {
         id
-        post {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
+        name
+        Posts {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
         }
-        content
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        postCommentsId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getTagPost = /* GraphQL */ `
+  query GetTagPost($id: ID!) {
+    getTagPost(id: $id) {
+      id
+      postID
+      tagID
+      post {
+        id
+        title
+        cover
+        content
+        description
+        tags {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      tag {
+        id
+        name
+        Posts {
+          items {
+            id
+            postID
+            tagID
+            post {
+              id
+              title
+              cover
+              content
+              description
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            tag {
+              id
+              name
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listTagPosts = /* GraphQL */ `
+  query ListTagPosts(
+    $filter: ModelTagPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTagPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        postID
+        tagID
+        post {
+          id
+          title
+          cover
+          content
+          description
+          tags {
+            items {
+              id
+              postID
+              tagID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        tag {
+          id
+          name
+          Posts {
+            items {
+              id
+              postID
+              tagID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTagPosts = /* GraphQL */ `
+  query SyncTagPosts(
+    $filter: ModelTagPostFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTagPosts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        postID
+        tagID
+        post {
+          id
+          title
+          cover
+          content
+          description
+          tags {
+            items {
+              id
+              postID
+              tagID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        tag {
+          id
+          name
+          Posts {
+            items {
+              id
+              postID
+              tagID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
       startedAt

@@ -1,6 +1,7 @@
 import {useState,useEffect,useMemo} from 'react'
 import {FaWifi,FaSearch} from 'react-icons/fa'
 import {AiFillWindows, AiOutlineClose,AiOutlinePlus} from 'react-icons/ai'
+import { useTransition, animated, config, useSpring } from '@react-spring/web'
 
 import { DataStore, Predicates,Hub } from 'aws-amplify';
 import {TagPost,Tag,Post} from '../models'
@@ -10,9 +11,10 @@ import Footer from '../components/Footer'
 
 import { convertISODatetimeToDate } from '../utils/datetime-parser'
 
-
-function uniquePosts(posts){
-	return posts.filter((post,index,self)=>self.findIndex(p=>p.id===post.id)===index)
+//  remove redundant items by its id
+//  @param modelItem: item with id property
+function removeRedundancyById(modelItem){
+	return modelItem.filter((post,index,self)=>self.findIndex(p=>p.id===post.id)===index)
 }
 
 async function fetchTagsWithPosts(){
@@ -62,7 +64,7 @@ const Blog = ()=>{
 	const [cachePosts,setCachePosts] = useState([])
 	const [numberOfPostsToShow,setNumberOfPostsToShow] = useState(10)
 
-	//
+
 	const clickTag = (tag)=>{
 		setSelectedTags(ps_tags=>{
 			if(ps_tags.map(tag=>tag.id).includes(tag.id)){
@@ -73,49 +75,47 @@ const Blog = ()=>{
 		});
 	}
 
-	const setCaches = ()=>{
-		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-			setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
-			setCachePosts(uniquePosts(posts.map(prettyPost)))
-		})
-	}
-
-	useEffect(()=>{
-		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
-			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
-			setPosts(uniquePosts(posts.map(prettyPost)))
-		})
-	},[])
-
-	useEffect(()=>{
-		const unselectedTags = cacheTags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
-		setTags([...selectedTags,...unselectedTags,])
-	},[cacheTags])
-
-	useEffect(()=>{
-		if (selectedTags.length===0){
-			setPosts(cachePosts)
-		}else{
-			const posts = selectedTags.reduce((acc,tag)=>{
-				return [...acc,...tag.posts]
-			},[])
-			setPosts(uniquePosts(posts))
-		}
-	},[cachePosts])
-
+	// load data and put to each caches if sync is done
 	useEffect(()=>{
 		const listener = Hub.listen('datastore', async hubData => {
 			const  { event, data } = hubData.payload;
 			if (event === 'ready') {
-				setCaches()
+				console.log('sync is done')
+				// update all caches if sync is done
+				fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
+					setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+					setCachePosts(removeRedundancyById(posts.map(prettyPost)))
+				})
 			}
 		})
 		return listener
 	},[])
 
 	useEffect(()=>{
-		const unselectedTags = tags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
-		setTags([...selectedTags,...unselectedTags,])
+		fetchTagsWithPosts().then(( {tagsWithPosts,posts} )=>{
+			setTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+			setPosts(removeRedundancyById(posts.map(prettyPost)))
+			setCacheTags(tagsWithPosts.map(tag=>prettyTag(tag)))
+			setCachePosts(removeRedundancyById(posts.map(prettyPost)))
+		})
+	},[])
+
+	const updateTags = ()=>{
+		setTags(p_tags=>{
+			const unselectedTags = p_tags.filter(tag=>!selectedTags.map(_tag=>_tag.id).includes(tag.id))
+			return [...selectedTags,...unselectedTags,]
+		})
+	}
+
+	useEffect(()=>{
+		//find diff between current tags and cache tags, push new tags to end of current tags 
+		const newTags = cacheTags.filter(tag=>!tags.map(_tag=>_tag.id).includes(tag.id))
+		setTags([...tags,...newTags])
+		updateTags()
+		},[cacheTags])
+
+	useEffect(()=>{
+		updateTags()
 		},[selectedTags])
 
 	useEffect(()=>{
@@ -125,14 +125,13 @@ const Blog = ()=>{
 			const posts = selectedTags.reduce((acc,tag)=>{
 				return [...acc,...tag.posts]
 			},[])
-			setPosts(uniquePosts(posts))
+			setPosts(removeRedundancyById(posts))
 		}
-		},[selectedTags])
-
+		},[cachePosts,selectedTags])
 
 	return (
-		<div className='w-screen h-screen'>
-		<Header />
+		<div className='w-screen h-screen flex flex-col justify-between'>
+			<Header />
 			<div className='w-[80%] mx-auto mt-20 pb-20'>
 				{/*Decorator*/}
 				<div className="flex md:flex-row flex-col justify-between items-center gap-20 mt-10">
@@ -154,10 +153,10 @@ const Blog = ()=>{
 						<AiOutlineClose/>
 					</div>
 					<div className='flex flex-row flex-wrap justify-center gap-5 mt-6'>
-						{tags.slice(0,isMobile ? 10 : 25).map((tag,idx) => 
-							<div key={`tag${idx}-${tag.name}`} onClick={()=>{ clickTag(tag) }} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
+						{tags.map( tag => 
+							<animated.div  key={`tag-${tag.id}`} onClick={()=>{ clickTag(tag) }} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
 								<p>{tag.name}</p>
-							</div>
+							</animated.div>
 						)}
 					</div>
 				</div>
@@ -196,7 +195,7 @@ const Blog = ()=>{
 					}
 				</div>
 			</div>
-			<Footer />
+		<Footer />
 		</div>
 	)
 }
