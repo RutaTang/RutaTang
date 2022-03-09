@@ -12,13 +12,17 @@ PubSub.configure(awsconfig);
 import './index.css'
 import Home from './pages/Home'
 import Blog from './pages/Blog'
+import BlogPostDetail from './pages/BlogPostDetail'
 
 
 ReactDOM.render(
 	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/blog" element={<Blog />} /> 
+			<Route path="/blog">
+				<Route index element={<Blog/>} />
+				<Route path=":id" element={<BlogPostDetail />} />
+			</Route>
 			<Route path="*" element={<h1>404</h1>} />
 		</Routes>
 	</BrowserRouter>

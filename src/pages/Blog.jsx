@@ -2,6 +2,7 @@ import {useState,useEffect,useMemo} from 'react'
 import {FaWifi,FaSearch} from 'react-icons/fa'
 import {AiFillWindows, AiOutlineClose,AiOutlinePlus} from 'react-icons/ai'
 import { useTransition, animated, config, useSpring } from '@react-spring/web'
+import { useNavigate } from 'react-router-dom';
 
 import { DataStore, Predicates,Hub } from 'aws-amplify';
 import {TagPost,Tag,Post} from '../models'
@@ -9,7 +10,7 @@ import {TagPost,Tag,Post} from '../models'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import { convertISODatetimeToDate } from '../utils/datetime-parser'
+import {prettyPost,prettyTag} from '../utils/pretty'
 
 //  remove redundant items by its id
 //  @param modelItem: item with id property
@@ -36,56 +37,37 @@ async function fetchTagsWithPosts(){
 
 
 
-function prettyTag(tag){
-	return {
-		id:tag.id,
-		name:tag.name,
-		posts:tag.posts.map(prettyPost),
-	}
-}
-
-function prettyPost(post){
-	return {
-		id:post.id,
-		title:post.title,
-		createdAt:convertISODatetimeToDate(post.createdAt),
-		updatedAt:convertISODatetimeToDate(post.updatedAt),
-		timeTaken: post.timeTaken,
-		cover: post.cover,
-	}
-}
 
 const Blog = ()=>{
 	const [unSelectedTags,setUnSelectedTags] = useState([])
 	const [selectedTags,setSelectedTags] = useState([])
 	const [posts,setPosts] = useState([])
 	const [cachePosts,setCachePosts] = useState([])
-	const [numberOfPostsToShow,setNumberOfPostsToShow] = useState(10)
+	const [numberOfPostsToShow,setNumberOfPostsToShow] = useState(9)
 	const [syncTimes,setSyncTimes] = useState(0)
+	const navigate = useNavigate()
 	const isMobile = window.innerWidth < 768
 
 	const selectedTagsTransitions = useTransition(selectedTags, {
 		from: { opacity: 0, transform:'scale(0.8)' },
 		enter: { opacity: 1, transform:'scale(1)' },
-		duration:100,
+		duration:200,
 		config: config.wobbly,
 		keys: item=>item.id
 	})
 
 	const unSelectedTagsTransitions = useTransition(unSelectedTags, {
-		from: { opacity: 0, transform:'translateY(-20%)' },
-		enter: { opacity: 1, transform:'translateY(0%)' },
-		duration: 600,
+		from: { opacity: 0, transform:'scale(0.8)' },
+		enter: { opacity: 1, transform:'scale(1)' },
+		duration: 300,
 		config: config.wobbly,
 		keys: item=>item.id
 	})
 
 	const postsTransitions = useTransition(posts.slice(0,numberOfPostsToShow), {
-		from: { opacity: 0 },
+		from: { opacity: 0.8 },
 		enter: { opacity: 1 },
-		duration: 100,
-		trail: 100,
-		config: config.wobbly,
+		duration: 50,
 		keys: item=>item.id
 	})
 
@@ -97,6 +79,10 @@ const Blog = ()=>{
 			setSelectedTags([...selectedTags,tag])
 			setUnSelectedTags(unSelectedTags.filter(t=>t.id!==tag.id))
 		}
+	}
+
+	const choosePost = (post)=>{
+		navigate(`/blog/${post.id}`)
 	}
 
 	useEffect(()=>{
@@ -174,12 +160,12 @@ const Blog = ()=>{
 					<div className='grid md:grid-cols-3 grid-cols-1 gap-16'>
 						{/*Card*/}
 						{postsTransitions((styles, post)=>
-							<animated.div style={styles} key={`post-${post.id}`} className='h-[360px] bg-white shadow rounded-bl-lg rounded-br-lg transition ease-in-out hover:scale-105 cursor-pointer duration-300'>
+							<animated.div onClick={()=>{choosePost(post)}} style={styles} key={`post-${post.id}`} className='h-[360px] bg-white shadow rounded-bl-lg rounded-br-lg transition ease-in-out hover:scale-105 cursor-pointer duration-300'>
 								<img className='h-[220px] object-fill' src={post.cover} alt="cover img" />
 								<div className='mt-3 w-[90%] mx-auto flex flex-col justify-between h-[110px]'>
 									<h3 className='text-lg font-semibold truncate'>{post.title}</h3>
 									<div className='flex justify-between'>
-										<p>{post.timeTaken}</p>
+										<p>{post.timeTaken ?? "No Idea"}</p>
 										<p>{post.createdAt}</p>
 									</div>
 								</div>
@@ -188,7 +174,7 @@ const Blog = ()=>{
 						}
 					</div>
 					<div className='flex flex-row justify-center mt-12'>
-						<button onClick={()=>{setNumberOfPostsToShow(p=>p+5)}} className='flex flex-row justify-between items-center text-black border-2 border-gray-300 px-5 py-2 rounded-lg'>
+						<button onClick={()=>{setNumberOfPostsToShow(p=>p+6)}} className='flex flex-row justify-between items-center text-black border-2 border-gray-300 px-5 py-2 rounded-lg'>
 							<AiOutlinePlus className='text-xl font-bold'/>
 							<p className='ml-2'>Load More Articles</p>
 						</button>

@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "RutaTang",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/ruta/Coding/Web/RutaTang/amplify/backend/api/RutaTang/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-06c255e8-c9b9-4e7e-aa78-12ef4bc40026/amplify/backend/api/RutaTang/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

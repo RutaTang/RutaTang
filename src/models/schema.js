@@ -52,6 +52,13 @@ export const schema = {
                         "associatedWith": "post"
                     }
                 },
+                "timeTaken": {
+                    "name": "timeTaken",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -226,5 +233,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "072586cca0654b38eaea248e14fbf1bd"
+    "version": "65526cd232cd03e23998c59af35485ab"
 };

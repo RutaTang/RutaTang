@@ -24,6 +24,7 @@ export const getPost = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -52,6 +53,7 @@ export const getPost = /* GraphQL */ `
         nextToken
         startedAt
       }
+      timeTaken
       createdAt
       updatedAt
       _version
@@ -84,6 +86,7 @@ export const listPosts = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -108,6 +111,7 @@ export const listPosts = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -149,6 +153,7 @@ export const syncPosts = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -173,6 +178,7 @@ export const syncPosts = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -204,6 +210,7 @@ export const getTag = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -261,6 +268,7 @@ export const listTags = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -323,6 +331,7 @@ export const syncTags = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -381,6 +390,7 @@ export const getTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -405,6 +415,7 @@ export const getTagPost = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -425,6 +436,7 @@ export const getTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -494,6 +506,7 @@ export const listTagPosts = /* GraphQL */ `
             nextToken
             startedAt
           }
+          timeTaken
           createdAt
           updatedAt
           _version
@@ -571,6 +584,7 @@ export const syncTagPosts = /* GraphQL */ `
             nextToken
             startedAt
           }
+          timeTaken
           createdAt
           updatedAt
           _version

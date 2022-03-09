@@ -23,6 +23,7 @@ export declare class Post {
   readonly content?: string;
   readonly description?: string;
   readonly tags?: (TagPost | null)[];
+  readonly timeTaken?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Post, PostMetaData>);

@@ -24,6 +24,7 @@ export const onCreatePost = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -52,6 +53,7 @@ export const onCreatePost = /* GraphQL */ `
         nextToken
         startedAt
       }
+      timeTaken
       createdAt
       updatedAt
       _version
@@ -83,6 +85,7 @@ export const onUpdatePost = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -111,6 +114,7 @@ export const onUpdatePost = /* GraphQL */ `
         nextToken
         startedAt
       }
+      timeTaken
       createdAt
       updatedAt
       _version
@@ -142,6 +146,7 @@ export const onDeletePost = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -170,6 +175,7 @@ export const onDeletePost = /* GraphQL */ `
         nextToken
         startedAt
       }
+      timeTaken
       createdAt
       updatedAt
       _version
@@ -198,6 +204,7 @@ export const onCreateTag = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -254,6 +261,7 @@ export const onUpdateTag = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -310,6 +318,7 @@ export const onDeleteTag = /* GraphQL */ `
               nextToken
               startedAt
             }
+            timeTaken
             createdAt
             updatedAt
             _version
@@ -369,6 +378,7 @@ export const onCreateTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -393,6 +403,7 @@ export const onCreateTagPost = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -413,6 +424,7 @@ export const onCreateTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -474,6 +486,7 @@ export const onUpdateTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -498,6 +511,7 @@ export const onUpdateTagPost = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -518,6 +532,7 @@ export const onUpdateTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -579,6 +594,7 @@ export const onDeleteTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
@@ -603,6 +619,7 @@ export const onDeleteTagPost = /* GraphQL */ `
           nextToken
           startedAt
         }
+        timeTaken
         createdAt
         updatedAt
         _version
@@ -623,6 +640,7 @@ export const onDeleteTagPost = /* GraphQL */ `
               cover
               content
               description
+              timeTaken
               createdAt
               updatedAt
               _version
