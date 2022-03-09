@@ -64,10 +64,26 @@ const Blog = ()=>{
 	const [syncTimes,setSyncTimes] = useState(0)
 	const isMobile = window.innerWidth < 768
 
+	const selectedTagsTransitions = useTransition(selectedTags, {
+		from: { opacity: 0, transform:'scale(0.8)' },
+		enter: { opacity: 1, transform:'scale(1)' },
+		duration:100,
+		config: config.wobbly,
+		keyts: item=>item.id
+	})
+
+	const unSelectedTagsTransitions = useTransition(unSelectedTags, {
+		from: { opacity: 0, transform:'translateY(-20%)' },
+		enter: { opacity: 1, transform:'translateY(0%)' },
+		duration: 600,
+		config: config.wobbly,
+		keyts: item=>item.id
+	})
+
 	const selectTag = (tag)=>{
 		if(selectedTags.find(t=>t.id===tag.id)){
 			setSelectedTags(selectedTags.filter(t=>t.id!==tag.id))
-			setUnSelectedTags([...unSelectedTags,tag])
+			setUnSelectedTags([tag,...unSelectedTags,])
 		}else{
 			setSelectedTags([...selectedTags,tag])
 			setUnSelectedTags(unSelectedTags.filter(t=>t.id!==tag.id))
@@ -110,7 +126,7 @@ const Blog = ()=>{
 
 	return (
 		<div className='w-screen h-screen flex flex-col justify-between'>
-			<Header />
+		<Header />
 			<div className='w-[80%] mx-auto mt-20 pb-20'>
 				{/*Decorator*/}
 				<div className="flex md:flex-row flex-col justify-between items-center gap-20 mt-10">
@@ -118,7 +134,7 @@ const Blog = ()=>{
 						<FaWifi className='md:-rotate-45'/>
 						<p>Lifelong Learning</p>
 						<p className='md:self-end'>Consolidating With Writing</p>
-					<p>Never Stopping</p>
+						<p>Never Stopping</p>
 					</div>
 					<div className='basis-1/2'>
 						<img src="/svgs/dna.svg" alt="" />
@@ -132,8 +148,13 @@ const Blog = ()=>{
 						<AiOutlineClose/>
 					</div>
 					<div className='flex flex-row flex-wrap justify-center gap-5 mt-6'>
-						{[...selectedTags,...unSelectedTags].map( tag => 
-							<animated.div  key={`tag-${tag.id}`} onClick={()=>{selectTag(tag)}} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
+						{selectedTagsTransitions((styles ,tag) => 
+							<animated.div style={styles}  key={`tag-${tag.id}`} onClick={()=>{selectTag(tag)}} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
+								<p>{tag.name}</p>
+							</animated.div>
+						)}
+						{unSelectedTagsTransitions((styles, tag) => 
+							<animated.div style={styles}  key={`tag-${tag.id}`} onClick={()=>{selectTag(tag)}} className={`flex-none px-2 py-1 rounded-md cursor-pointer ${selectedTags.includes(tag) ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
 								<p>{tag.name}</p>
 							</animated.div>
 						)}
