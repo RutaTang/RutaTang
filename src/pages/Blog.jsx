@@ -69,7 +69,7 @@ const Blog = ()=>{
 		enter: { opacity: 1, transform:'scale(1)' },
 		duration:100,
 		config: config.wobbly,
-		keyts: item=>item.id
+		keys: item=>item.id
 	})
 
 	const unSelectedTagsTransitions = useTransition(unSelectedTags, {
@@ -77,7 +77,16 @@ const Blog = ()=>{
 		enter: { opacity: 1, transform:'translateY(0%)' },
 		duration: 600,
 		config: config.wobbly,
-		keyts: item=>item.id
+		keys: item=>item.id
+	})
+
+	const postsTransitions = useTransition(posts.slice(0,numberOfPostsToShow), {
+		from: { opacity: 0 },
+		enter: { opacity: 1 },
+		duration: 100,
+		trail: 100,
+		config: config.wobbly,
+		keys: item=>item.id
 	})
 
 	const selectTag = (tag)=>{
@@ -164,8 +173,8 @@ const Blog = ()=>{
 				<div className='mt-20 w-full'>
 					<div className='grid md:grid-cols-3 grid-cols-1 gap-16'>
 						{/*Card*/}
-						{posts.slice(0,numberOfPostsToShow).map((post,idx)=>(
-							<div key={`post${idx}-${post.title}`} className='h-[360px] bg-white shadow rounded-bl-lg rounded-br-lg transition ease-in-out hover:scale-105 cursor-pointer duration-300'>
+						{postsTransitions((styles, post)=>
+							<animated.div style={styles} key={`post-${post.id}`} className='h-[360px] bg-white shadow rounded-bl-lg rounded-br-lg transition ease-in-out hover:scale-105 cursor-pointer duration-300'>
 								<img className='h-[220px] object-fill' src={post.cover} alt="cover img" />
 								<div className='mt-3 w-[90%] mx-auto flex flex-col justify-between h-[110px]'>
 									<h3 className='text-lg font-semibold truncate'>{post.title}</h3>
@@ -174,8 +183,8 @@ const Blog = ()=>{
 										<p>{post.createdAt}</p>
 									</div>
 								</div>
-							</div>
-						))
+							</animated.div>
+						)
 						}
 					</div>
 					<div className='flex flex-row justify-center mt-12'>
