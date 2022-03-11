@@ -1,11 +1,11 @@
-import {useState,useEffect,useMemo} from 'react'
+import {useState,useEffect} from 'react'
 import {FaWifi,FaSearch} from 'react-icons/fa'
-import {AiFillWindows, AiOutlineClose,AiOutlinePlus} from 'react-icons/ai'
-import { useTransition, animated, config, useSpring } from '@react-spring/web'
+import {AiOutlineClose,AiOutlinePlus} from 'react-icons/ai'
+import { useTransition, animated, config} from '@react-spring/web'
 import { useNavigate } from 'react-router-dom';
 
 import { DataStore, Predicates,Hub } from 'aws-amplify';
-import {TagPost,Tag,Post} from '../models'
+import {TagPost,Tag} from '../models'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -34,8 +34,6 @@ async function fetchTagsWithPosts(){
 
 	return {tagsWithPosts,posts}
 }
-
-
 
 
 const Blog = ()=>{
