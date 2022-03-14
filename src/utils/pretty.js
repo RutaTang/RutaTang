@@ -12,6 +12,7 @@ function prettyPost(post){
 	return {
 		id:post.id,
 		title:post.title,
+		content:post.content,
 		description:post.description,
 		createdAt:convertISODatetimeToDate(post.createdAt),
 		updatedAt:convertISODatetimeToDate(post.updatedAt),
