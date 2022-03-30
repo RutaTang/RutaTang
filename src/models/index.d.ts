@@ -4,6 +4,10 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+type TechStackMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type PostMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -14,6 +18,16 @@ type TagMetaData = {
 
 type TagPostMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+export declare class TechStack {
+  readonly id: string;
+  readonly name?: string;
+  readonly logo?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<TechStack, TechStackMetaData>);
+  static copyOf(source: TechStack, mutator: (draft: MutableModel<TechStack, TechStackMetaData>) => MutableModel<TechStack, TechStackMetaData> | void): TechStack;
 }
 
 export declare class Post {

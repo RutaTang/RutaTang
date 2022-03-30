@@ -8,11 +8,11 @@ projects:
     extensions:
       amplify:
         codeGenTarget: javascript
-        generatedFileName: ''
+        generatedFileName: ""
         docsFilePath: src/graphql
         region: ap-southeast-1
         apiId: null
-        maxDepth: 5 
+        maxDepth: 5
 extensions:
   amplify:
     version: 3

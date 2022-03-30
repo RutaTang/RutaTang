@@ -23,6 +23,11 @@
       "StackName": "amplify-rutatang-dev-114914",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:760537937840:stack/amplify-rutatang-dev-114914/4070dff0-9780-11ec-8793-06855712f3b2",
       "AmplifyAppId": "d39nkqba8tu8vs"
+    },
+    "categories": {
+      "auth": {
+        "RutaTang": {}
+      }
     }
   }
 }

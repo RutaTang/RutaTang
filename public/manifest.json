@@ -2,16 +2,16 @@
   "name": "Ruta Blog",
   "start_url": "/",
   "icons": [
-	  {
-		  "src": "/svgs/r512.svg",
-		  "type": "image/svg+xml",
-		  "sizes": "512x512"
-	  },
-	  {
-		  "src": "/svgs/r192.svg",
-		  "type": "image/svg+xml",
-		  "sizes": "192x192"
-	  }
+    {
+      "src": "/svgs/r512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/svgs/r192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    }
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",

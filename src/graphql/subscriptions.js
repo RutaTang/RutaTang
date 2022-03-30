@@ -1,6 +1,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTechStack = /* GraphQL */ `
+  subscription OnCreateTechStack {
+    onCreateTechStack {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateTechStack = /* GraphQL */ `
+  subscription OnUpdateTechStack {
+    onUpdateTechStack {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteTechStack = /* GraphQL */ `
+  subscription OnDeleteTechStack {
+    onDeleteTechStack {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost {
     onCreatePost {

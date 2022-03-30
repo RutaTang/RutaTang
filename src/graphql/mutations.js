@@ -1,6 +1,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTechStack = /* GraphQL */ `
+  mutation CreateTechStack(
+    $input: CreateTechStackInput!
+    $condition: ModelTechStackConditionInput
+  ) {
+    createTechStack(input: $input, condition: $condition) {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateTechStack = /* GraphQL */ `
+  mutation UpdateTechStack(
+    $input: UpdateTechStackInput!
+    $condition: ModelTechStackConditionInput
+  ) {
+    updateTechStack(input: $input, condition: $condition) {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteTechStack = /* GraphQL */ `
+  mutation DeleteTechStack(
+    $input: DeleteTechStackInput!
+    $condition: ModelTechStackConditionInput
+  ) {
+    deleteTechStack(input: $input, condition: $condition) {
+      id
+      name
+      logo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
