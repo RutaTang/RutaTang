@@ -1,4 +1,2 @@
-import { queryAllTags } from "./tag";
-import { queryAllTechStacks } from "./techstack";
-
-export { queryAllTags, queryAllTechStacks };
+export * from "./tag";
+export * from "./techstack";

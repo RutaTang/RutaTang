@@ -18,6 +18,7 @@ function prettyPost(post) {
     updatedAt: convertISODatetimeToDate(post.updatedAt),
     timeTaken: post.timeTaken,
     cover: post.cover,
+    tagIds: post.tagIds,
   };
 }
 

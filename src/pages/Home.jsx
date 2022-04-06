@@ -48,8 +48,9 @@ function Home() {
           </p>
           <h1 className="text-4xl font-black md:text-6xl">Ruta Tang</h1>
           <h2 className="text-2xl font-semibold text-slate-600 leading-10 md:leading-[3.5rem] md:text-3xl">
-            A Software and Blockchain Developer | Data Analyzer | Artificial
-            Intelligence Learner | Finance and Quant Lover | Song Writer
+            A Frontend and Blockchain Developer | Web 3.0 | DAO | Data Analyst |
+            Artificial Intelligence Learner | Finance and Quant Lover | Song
+            Writer & Producer
           </h2>
         </div>
         <div>

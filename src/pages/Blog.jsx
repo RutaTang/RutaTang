@@ -3,14 +3,16 @@ import { FaSearch, FaWifi } from "react-icons/fa";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { animated, config, useTransition } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
+import _ from "lodash";
 
-import { DataStore, Hub, Predicates } from "aws-amplify";
+import { DataStore, Predicates } from "aws-amplify";
 import { Tag, TagPost } from "../models";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { prettyPost, prettyTag } from "../utils/pretty";
+import { prettyPost } from "../utils/pretty";
+import { queryAllTags } from "../graphql/api/tag";
 
 //  remove redundant items by its id
 //  @param modelItem: item with id property
@@ -40,24 +42,14 @@ async function fetchTagsWithPosts() {
 }
 
 const Blog = () => {
-  const [unSelectedTags, setUnSelectedTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [tagsWithPosts, setTagsWithPosts] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [cachePosts, setCachePosts] = useState([]);
+  const [selectedTagIds, setSelectedTagIds] = useState([]);
   const [numberOfPostsToShow, setNumberOfPostsToShow] = useState(9);
-  const [syncTimes, setSyncTimes] = useState(0);
   const navigate = useNavigate();
   // const isMobile = window.innerWidth < 768
 
-  const selectedTagsTransitions = useTransition(selectedTags, {
-    from: { opacity: 0, transform: "scale(0.8)" },
-    enter: { opacity: 1, transform: "scale(1)" },
-    duration: 200,
-    config: config.wobbly,
-    keys: (item) => item.id,
-  });
-
-  const unSelectedTagsTransitions = useTransition(unSelectedTags, {
+  const tagsTransitions = useTransition(tagsWithPosts, {
     from: { opacity: 0, transform: "scale(0.8)" },
     enter: { opacity: 1, transform: "scale(1)" },
     duration: 300,
@@ -72,56 +64,33 @@ const Blog = () => {
     keys: (item) => item.id,
   });
 
-  const selectTag = (tag) => {
-    if (selectedTags.find((t) => t.id === tag.id)) {
-      setSelectedTags(selectedTags.filter((t) => t.id !== tag.id));
-      setUnSelectedTags([tag, ...unSelectedTags]);
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-      setUnSelectedTags(unSelectedTags.filter((t) => t.id !== tag.id));
-    }
-  };
-
   const choosePost = (post) => {
     navigate(`/blog/${post.id}`);
   };
 
   useEffect(() => {
-    const listener = Hub.listen("datastore", async (hubData) => {
-      const { event } = hubData.payload;
-      if (event === "ready") {
-        console.log("sync is done");
-        setSyncTimes(syncTimes + 1);
-      }
+    queryAllTags().then((tags) => {
+      setTagsWithPosts(tags);
+      const posts = _.uniqBy(
+        tags
+          .map((tag) =>
+            tag.Posts.items.map((post) => {
+              post = post.post;
+              if (!post.tagIds) {
+                post.tagIds = [];
+              }
+              post.tagIds.push(tag.id);
+              return post;
+            })
+          )
+          .flat()
+          .map((post) => prettyPost(post)),
+        "id"
+      );
+      console.log(posts);
+      setPosts(posts);
     });
-    return listener;
   }, []);
-
-  useEffect(() => {
-    fetchTagsWithPosts().then(({ tagsWithPosts, posts }) => {
-      const selectedTagIds = selectedTags.map((tag) => tag.id);
-      const unSelectedTagIds = unSelectedTags.map((tag) => tag.id);
-      const newFectedTags = tagsWithPosts
-        .map((tag) => prettyTag(tag))
-        .filter((tag) => !selectedTagIds.includes(tag.id))
-        .filter((tag) => !unSelectedTagIds.includes(tag.id));
-      setUnSelectedTags((p) => [...p, ...newFectedTags]);
-
-      setPosts(removeRedundancyById(posts.map(prettyPost)));
-      setCachePosts(removeRedundancyById(posts.map(prettyPost)));
-    });
-  }, [syncTimes]);
-
-  useEffect(() => {
-    if (selectedTags.length === 0) {
-      setPosts(cachePosts);
-    } else {
-      const posts = selectedTags.reduce((acc, tag) => {
-        return [...acc, ...tag.posts];
-      }, []);
-      setPosts(removeRedundancyById(posts));
-    }
-  }, [cachePosts, selectedTags]);
 
   return (
     <div className="w-screen h-screen flex flex-col justify-between">
@@ -151,34 +120,14 @@ const Blog = () => {
             <AiOutlineClose />
           </div>
           <div className="flex flex-row flex-wrap justify-center gap-5 mt-6">
-            {selectedTagsTransitions((styles, tag) => (
+            {tagsTransitions((styles, tag) => (
               <animated.div
                 style={styles}
                 key={`tag-${tag.id}`}
                 onClick={() => {
-                  selectTag(tag);
+                  setSelectedTagIds([...selectedTagIds, tag.id]);
                 }}
-                className={`flex-none px-2 py-1 rounded-md cursor-pointer ${
-                  selectedTags.includes(tag)
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-200 text-black"
-                }`}
-              >
-                <p>{tag.name}</p>
-              </animated.div>
-            ))}
-            {unSelectedTagsTransitions((styles, tag) => (
-              <animated.div
-                style={styles}
-                key={`tag-${tag.id}`}
-                onClick={() => {
-                  selectTag(tag);
-                }}
-                className={`flex-none px-2 py-1 rounded-md cursor-pointer ${
-                  selectedTags.includes(tag)
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-200 text-black"
-                }`}
+                className={`flex-none px-2 py-1 rounded-md cursor-pointer bg-gray-800 text-white`}
               >
                 <p>{tag.name}</p>
               </animated.div>
