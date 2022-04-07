@@ -1,10 +1,10 @@
-type TechStack @model @auth(rules: [{ allow: public }]) {
+type TechStack @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   logo: String
 }
 
-type Post @model @auth(rules: [{ allow: public, operations: [read] }]) {
+type Post @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   title: String
   cover: String
@@ -14,9 +14,9 @@ type Post @model @auth(rules: [{ allow: public, operations: [read] }]) {
   timeTaken: String
 }
 
-
-type Tag @model @auth(rules: [{ allow: public, operations: [read] }]) {
+type Tag @model @auth(rules: [{allow: public, operations: [read]}]) {
   id: ID!
   name: String
   Posts: [Post] @manyToMany(relationName: "TagPost")
 }
+ 
