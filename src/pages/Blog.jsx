@@ -5,14 +5,8 @@ import { animated, config, useTransition } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
 
-import { DataStore, Predicates } from "aws-amplify";
-import { Tag, TagPost } from "../models";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-import { prettyPost } from "../utils/pretty";
-import { queryAllTags } from "../graphql/api/tag";
 
 //  remove redundant items by its id
 //  @param modelItem: item with id property
@@ -20,25 +14,6 @@ function removeRedundancyById(modelItem) {
   return modelItem.filter(
     (post, index, self) => self.findIndex((p) => p.id === post.id) === index
   );
-}
-
-async function fetchTagsWithPosts() {
-  const pairs = await DataStore.query(TagPost, Predicates.ALL);
-
-  // {tag:{posts}}
-  let tagsWithPosts = await DataStore.query(Tag, Predicates.ALL);
-  tagsWithPosts = tagsWithPosts.map((tag) => {
-    const newTag = { ...tag };
-    newTag.posts = pairs
-      .filter((pair) => pair.tag.id === tag.id)
-      .map((pair) => pair.post);
-    return newTag;
-  });
-
-  // posts
-  const posts = pairs.map((pair) => pair.post);
-
-  return { tagsWithPosts, posts };
 }
 
 const Blog = () => {
@@ -67,30 +42,6 @@ const Blog = () => {
   const choosePost = (post) => {
     navigate(`/blog/${post.id}`);
   };
-
-  useEffect(() => {
-    queryAllTags().then((tags) => {
-      setTagsWithPosts(tags);
-      const posts = _.uniqBy(
-        tags
-          .map((tag) =>
-            tag.Posts.items.map((post) => {
-              post = post.post;
-              if (!post.tagIds) {
-                post.tagIds = [];
-              }
-              post.tagIds.push(tag.id);
-              return post;
-            })
-          )
-          .flat()
-          .map((post) => prettyPost(post)),
-        "id"
-      );
-      console.log(posts);
-      setPosts(posts);
-    });
-  }, []);
 
   return (
     <div className="w-screen h-screen flex flex-col justify-between">
