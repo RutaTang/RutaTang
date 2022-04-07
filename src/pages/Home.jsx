@@ -4,16 +4,20 @@ import _ from "lodash";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AutoLoadRefresh from "../components/AutoLoadRefresh";
 
 import { queryAllTechStacks } from "../graphql/api/index";
 import { getPublicImageUrlByS3Path } from "../storage/index";
 
-async function fetchAndSetTechStacks(setTechStacks) {
+async function fetchAndSetTechStacks() {
   let items = await queryAllTechStacks();
-  items.forEach(async (item) => {
+  items = items.map(async (item) => {
     item.logoUrl = await getPublicImageUrlByS3Path(item.logo);
-    setTechStacks((p) => _.uniqBy([...p, item], "id"));
+    return item;
   });
+  items = await Promise.all(items);
+  items = _.uniqBy(items, "id");
+  return items;
 }
 
 function Home() {
@@ -28,9 +32,11 @@ function Home() {
   };
   const [logoRabbitStyle, logoRabbitApi] = useSpring(() => logoSpringConfig());
 
-  const [techStacks, setTechStacks] = useState([]);
+  const [techStacks, setTechStacks] = useState(null);
   useEffect(() => {
-    fetchAndSetTechStacks(setTechStacks);
+    fetchAndSetTechStacks().then((items) => {
+      setTechStacks(items);
+    });
   }, []);
 
   return (
@@ -142,17 +148,19 @@ function Home() {
       {/*Tech Stack*/}
       <div className="w-[85vw] mx-auto mt-[15vh] md:mt-[30vh]">
         <h1 className="text-2xl font-bold">TECH STACK</h1>
-        <div className="flex flex-row flex-wrap mt-10 gap-y-10 items-center justify-center md:justify-start">
-          {techStacks.map((el) => (
-            <div
-              key={`${el.id}`}
-              className="flex flex-col items-center w-[120px] h-[120px] gap-3"
-            >
-              <img className="w-[80px] h-[80px]" src={el.logoUrl} alt="" />
-              <p>{el.name}</p>
-            </div>
-          ))}
-        </div>
+        <AutoLoadRefresh loaded={techStacks === null ? false : true}>
+          <div className="flex flex-row flex-wrap mt-10 gap-y-10 items-center justify-center md:justify-start">
+            {techStacks?.map((el) => (
+              <div
+                key={`${el.id}`}
+                className="flex flex-col items-center w-[120px] h-[120px] gap-3"
+              >
+                <img className="w-[80px] h-[80px]" src={el.logoUrl} alt="" />
+                <p>{el.name}</p>
+              </div>
+            ))}
+          </div>
+        </AutoLoadRefresh>
       </div>
       {/*Footer*/}
       <Footer mt="10rem" />

@@ -12,6 +12,7 @@ import "./index.css";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPostDetail from "./pages/BlogPostDetail";
+import TestPage from "./pages/TestPage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Route index element={<Blog />} />
         <Route path=":id" element={<BlogPostDetail />} />
       </Route>
+      <Route path="/test" element={<TestPage />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   </BrowserRouter>,
