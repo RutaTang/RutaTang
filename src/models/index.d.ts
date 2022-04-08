@@ -22,8 +22,9 @@ type TagPostMetaData = {
 
 export declare class TechStack {
   readonly id: string;
-  readonly name?: string;
-  readonly logo?: string;
+  readonly name: string;
+  readonly logo: string;
+  readonly url?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<TechStack, TechStackMetaData>);
@@ -32,12 +33,9 @@ export declare class TechStack {
 
 export declare class Post {
   readonly id: string;
-  readonly title?: string;
-  readonly cover?: string;
-  readonly content?: string;
+  readonly title: string;
   readonly description?: string;
   readonly tags?: (TagPost | null)[];
-  readonly timeTaken?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Post, PostMetaData>);
@@ -46,7 +44,8 @@ export declare class Post {
 
 export declare class Tag {
   readonly id: string;
-  readonly name?: string;
+  readonly name: string;
+  readonly description?: string;
   readonly Posts?: (TagPost | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;

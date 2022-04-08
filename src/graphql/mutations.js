@@ -10,6 +10,7 @@ export const createTechStack = /* GraphQL */ `
       id
       name
       logo
+      url
       createdAt
       updatedAt
       _version
@@ -27,6 +28,7 @@ export const updateTechStack = /* GraphQL */ `
       id
       name
       logo
+      url
       createdAt
       updatedAt
       _version
@@ -44,6 +46,7 @@ export const deleteTechStack = /* GraphQL */ `
       id
       name
       logo
+      url
       createdAt
       updatedAt
       _version
@@ -60,44 +63,12 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
-      cover
-      content
       description
       tags {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -107,7 +78,6 @@ export const createPost = /* GraphQL */ `
         nextToken
         startedAt
       }
-      timeTaken
       createdAt
       updatedAt
       _version
@@ -124,44 +94,12 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
-      cover
-      content
       description
       tags {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -171,7 +109,6 @@ export const updatePost = /* GraphQL */ `
         nextToken
         startedAt
       }
-      timeTaken
       createdAt
       updatedAt
       _version
@@ -188,44 +125,12 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
-      cover
-      content
       description
       tags {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -235,7 +140,6 @@ export const deletePost = /* GraphQL */ `
         nextToken
         startedAt
       }
-      timeTaken
       createdAt
       updatedAt
       _version
@@ -252,41 +156,12 @@ export const createTag = /* GraphQL */ `
     createTag(input: $input, condition: $condition) {
       id
       name
+      description
       Posts {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -312,41 +187,12 @@ export const updateTag = /* GraphQL */ `
     updateTag(input: $input, condition: $condition) {
       id
       name
+      description
       Posts {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -372,41 +218,12 @@ export const deleteTag = /* GraphQL */ `
     deleteTag(input: $input, condition: $condition) {
       id
       name
+      description
       Posts {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -436,46 +253,11 @@ export const createTagPost = /* GraphQL */ `
       post {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -485,39 +267,8 @@ export const createTagPost = /* GraphQL */ `
       tag {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
@@ -547,46 +298,11 @@ export const updateTagPost = /* GraphQL */ `
       post {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -596,39 +312,8 @@ export const updateTagPost = /* GraphQL */ `
       tag {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
@@ -658,46 +343,11 @@ export const deleteTagPost = /* GraphQL */ `
       post {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -707,39 +357,8 @@ export const deleteTagPost = /* GraphQL */ `
       tag {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }

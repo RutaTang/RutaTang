@@ -14,11 +14,18 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "logo": {
                     "name": "logo",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -80,21 +87,7 @@ export const schema = {
                     "name": "title",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "cover": {
-                    "name": "cover",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "content": {
-                    "name": "content",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "description": {
@@ -117,13 +110,6 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "post"
                     }
-                },
-                "timeTaken": {
-                    "name": "timeTaken",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -156,6 +142,9 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
                                     "read"
                                 ]
                             }
@@ -176,6 +165,13 @@ export const schema = {
                 },
                 "name": {
                     "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -226,6 +222,9 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
                                     "read"
                                 ]
                             }
@@ -299,5 +298,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "8e9808c99b53a42d91e82c9ecfc910d0"
+    "version": "eb6699bc4c414ce59f7f51ee1f3d0631"
 };

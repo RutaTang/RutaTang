@@ -7,6 +7,7 @@ export const getTechStack = /* GraphQL */ `
       id
       name
       logo
+      url
       createdAt
       updatedAt
       _version
@@ -26,6 +27,7 @@ export const listTechStacks = /* GraphQL */ `
         id
         name
         logo
+        url
         createdAt
         updatedAt
         _version
@@ -54,6 +56,7 @@ export const syncTechStacks = /* GraphQL */ `
         id
         name
         logo
+        url
         createdAt
         updatedAt
         _version
@@ -70,44 +73,12 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
-      cover
-      content
       description
       tags {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -117,7 +88,6 @@ export const getPost = /* GraphQL */ `
         nextToken
         startedAt
       }
-      timeTaken
       createdAt
       updatedAt
       _version
@@ -136,46 +106,11 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -203,46 +138,11 @@ export const syncPosts = /* GraphQL */ `
       items {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -259,41 +159,12 @@ export const getTag = /* GraphQL */ `
     getTag(id: $id) {
       id
       name
+      description
       Posts {
         items {
           id
           postID
           tagID
-          post {
-            id
-            title
-            cover
-            content
-            description
-            tags {
-              nextToken
-              startedAt
-            }
-            timeTaken
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          tag {
-            id
-            name
-            Posts {
-              nextToken
-              startedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -321,39 +192,8 @@ export const listTags = /* GraphQL */ `
       items {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
@@ -384,39 +224,8 @@ export const syncTags = /* GraphQL */ `
       items {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
@@ -440,46 +249,11 @@ export const getTagPost = /* GraphQL */ `
       post {
         id
         title
-        cover
-        content
         description
         tags {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
-        timeTaken
         createdAt
         updatedAt
         _version
@@ -489,39 +263,8 @@ export const getTagPost = /* GraphQL */ `
       tag {
         id
         name
+        description
         Posts {
-          items {
-            id
-            postID
-            tagID
-            post {
-              id
-              title
-              cover
-              content
-              description
-              timeTaken
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            tag {
-              id
-              name
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           nextToken
           startedAt
         }
@@ -553,24 +296,7 @@ export const listTagPosts = /* GraphQL */ `
         post {
           id
           title
-          cover
-          content
           description
-          tags {
-            items {
-              id
-              postID
-              tagID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
-          timeTaken
           createdAt
           updatedAt
           _version
@@ -580,20 +306,7 @@ export const listTagPosts = /* GraphQL */ `
         tag {
           id
           name
-          Posts {
-            items {
-              id
-              postID
-              tagID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
+          description
           createdAt
           updatedAt
           _version
@@ -631,24 +344,7 @@ export const syncTagPosts = /* GraphQL */ `
         post {
           id
           title
-          cover
-          content
           description
-          tags {
-            items {
-              id
-              postID
-              tagID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
-          timeTaken
           createdAt
           updatedAt
           _version
@@ -658,20 +354,7 @@ export const syncTagPosts = /* GraphQL */ `
         tag {
           id
           name
-          Posts {
-            items {
-              id
-              postID
-              tagID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
+          description
           createdAt
           updatedAt
           _version

@@ -1,0 +1,21 @@
+type TechStack @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  logo: String!
+  url: String
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  description: String
+  tags: [Tag] @manyToMany(relationName: "TagPost")
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  Posts: [Post] @manyToMany(relationName: "TagPost")
+}
+ 
