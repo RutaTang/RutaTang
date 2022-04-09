@@ -12,7 +12,7 @@ import { getPublicImageUrlByS3Path } from "../storage/index";
 async function fetchAndSetTechStacks() {
   let items = await queryAllTechStacks();
   items = items.map(async (item) => {
-    item.logoUrl = await getPublicImageUrlByS3Path(item.logo);
+    item.logoUrl = await getPublicImageUrlByS3Path(item.logo_s3_path);
     return item;
   });
   items = await Promise.all(items);
