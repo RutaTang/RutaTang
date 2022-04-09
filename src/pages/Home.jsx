@@ -1,5 +1,5 @@
 import { animated, config, useSpring } from "@react-spring/web";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import _ from "lodash";
 
 import Header from "../components/Header";
@@ -52,12 +52,22 @@ function Home() {
             </span>
             also call me
           </p>
-          <h1 className="text-4xl font-black md:text-6xl">Ruta Tang</h1>
-          <h2 className="text-2xl font-semibold text-slate-600 leading-10 md:leading-[3.5rem] md:text-3xl">
-            A Frontend and Blockchain Developer | Web 3.0 | DAO | Data Analyst |
-            Artificial Intelligence Learner | Finance and Quant Lover | Song
-            Writer & Producer
-          </h2>
+          <h1 className="z-10 text-4xl bg-white text-black font-black md:text-6xl mix-blend-lighten">
+            Ruta Tang
+          </h1>
+          <div className="relative h-80 md:h-56 w-full">
+            <video
+              className="absolute object-cover left-5 top-5 w-[90%] h-[90%]"
+              autoPlay
+              loop
+              src="/videos/text_dark_sea_bg.mp4"
+            ></video>
+            <h2 className="mix-blend-lighten bg-white w-full h-full absolute text-2xl font-semibold text-slate-600 leading-10 md:leading-[3.5rem] md:text-3xl">
+              A Frontend and Blockchain Developer | Web 3.0 | DAO | Data Analyst
+              | Artificial Intelligence Learner | Finance and Quant Lover | Song
+              Writer & Producer
+            </h2>
+          </div>
         </div>
         <div>
           <animated.div style={logoRabbitStyle}>
