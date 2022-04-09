@@ -1,48 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTechStack = /* GraphQL */ `
-  subscription OnCreateTechStack {
-    onCreateTechStack {
+export const onCreateBlog = /* GraphQL */ `
+  subscription OnCreateBlog {
+    onCreateBlog {
       id
       name
-      logo
-      url
+      posts {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          blogPostsId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
-export const onUpdateTechStack = /* GraphQL */ `
-  subscription OnUpdateTechStack {
-    onUpdateTechStack {
+export const onUpdateBlog = /* GraphQL */ `
+  subscription OnUpdateBlog {
+    onUpdateBlog {
       id
       name
-      logo
-      url
+      posts {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          blogPostsId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
-export const onDeleteTechStack = /* GraphQL */ `
-  subscription OnDeleteTechStack {
-    onDeleteTechStack {
+export const onDeleteBlog = /* GraphQL */ `
+  subscription OnDeleteBlog {
+    onDeleteBlog {
       id
       name
-      logo
-      url
+      posts {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          blogPostsId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -51,26 +66,28 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost {
       id
       title
-      description
-      tags {
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
         items {
           id
-          postID
-          tagID
+          content
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
+          postCommentsId
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      blogPostsId
     }
   }
 `;
@@ -79,26 +96,28 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost {
       id
       title
-      description
-      tags {
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
         items {
           id
-          postID
-          tagID
+          content
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
+          postCommentsId
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      blogPostsId
     }
   }
 `;
@@ -107,236 +126,109 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost {
       id
       title
-      description
-      tags {
+      blog {
+        id
+        name
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      comments {
         items {
           id
-          postID
-          tagID
+          content
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
+          postCommentsId
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      blogPostsId
     }
   }
 `;
-export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag {
-    onCreateTag {
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
       id
-      name
-      description
-      Posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag {
-    onUpdateTag {
-      id
-      name
-      description
-      Posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag {
-    onDeleteTag {
-      id
-      name
-      description
-      Posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onCreateTagPost = /* GraphQL */ `
-  subscription OnCreateTagPost {
-    onCreateTagPost {
-      id
-      postID
-      tagID
       post {
         id
         title
-        description
-        tags {
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+        blogPostsId
       }
-      tag {
-        id
-        name
-        description
-        Posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      content
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      postCommentsId
     }
   }
 `;
-export const onUpdateTagPost = /* GraphQL */ `
-  subscription OnUpdateTagPost {
-    onUpdateTagPost {
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
       id
-      postID
-      tagID
       post {
         id
         title
-        description
-        tags {
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+        blogPostsId
       }
-      tag {
-        id
-        name
-        description
-        Posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      content
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      postCommentsId
     }
   }
 `;
-export const onDeleteTagPost = /* GraphQL */ `
-  subscription OnDeleteTagPost {
-    onDeleteTagPost {
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
       id
-      postID
-      tagID
       post {
         id
         title
-        description
-        tags {
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        comments {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+        blogPostsId
       }
-      tag {
-        id
-        name
-        description
-        Posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      content
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      postCommentsId
     }
   }
 `;

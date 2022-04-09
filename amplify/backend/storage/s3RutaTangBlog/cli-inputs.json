@@ -1,7 +1,7 @@
 {
-  "resourceName": "s30af7be20",
-  "policyUUID": "0af7be20",
-  "bucketName": "rutatang3275df02afa945d2bc07c6df172e91cd",
+  "resourceName": "s3RutaTangBlog",
+  "policyUUID": "01417a42",
+  "bucketName": "rutatangblog",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"

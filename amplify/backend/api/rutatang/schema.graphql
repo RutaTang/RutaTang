@@ -1,21 +1,22 @@
-type TechStack @model @auth(rules: [{allow: public}]) {
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Blog @model {
   id: ID!
   name: String!
-  logo: String!
-  url: String
+  posts: [Post] @hasMany
 }
 
-type Post @model @auth(rules: [{allow: public}]) {
+type Post @model {
   id: ID!
   title: String!
-  description: String
-  tags: [Tag] @manyToMany(relationName: "TagPost")
+  blog: Blog @belongsTo
+  comments: [Comment] @hasMany
 }
 
-type Tag @model @auth(rules: [{allow: public}]) {
+type Comment @model {
   id: ID!
-  name: String!
-  description: String
-  Posts: [Post] @manyToMany(relationName: "TagPost")
+  post: Post @belongsTo
+  content: String!
 }
- 

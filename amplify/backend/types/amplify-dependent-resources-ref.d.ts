@@ -1,13 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
-    "api": {
-        "rutatang": {
-            "GraphQLAPIKeyOutput": "string",
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        }
-    },
     "auth": {
-        "rutatangded82656": {
+        "rutatang04739d21": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -18,9 +11,16 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "s30af7be20": {
+        "s3RutaTangBlog": {
             "BucketName": "string",
             "Region": "string"
+        }
+    },
+    "api": {
+        "rutatang": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
         }
     }
 }
