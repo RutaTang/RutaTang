@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "rutatangded82656": {}
+        "rutatangded82656": {},
+        "true": {}
       },
       "hosting": {
         "amplifyhosting": {

@@ -1,0 +1,14 @@
+{
+  "resourceName": "s30af7be20",
+  "policyUUID": "0af7be20",
+  "bucketName": "rutatang3275df02afa945d2bc07c6df172e91cd",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

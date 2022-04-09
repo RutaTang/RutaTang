@@ -55,5 +55,12 @@
       "type": "cicd",
       "lastPushTimeStamp": "2022-04-07T14:40:01.695Z"
     }
+  },
+  "storage": {
+    "s30af7be20": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }
