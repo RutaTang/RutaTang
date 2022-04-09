@@ -1,19 +1,23 @@
-type Blog @model @auth(rules: [{allow: public}]) {
+type TechStack @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
-  posts: [Post] @hasMany
+  description: String
+  logo_s3_path: String
 }
 
 type Post @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String!
-  blog: Blog @belongsTo
-  comments: [Comment] @hasMany
+  description: String
+  content: String
+  cover_s3_path: String
+  Tags: [Tag] @manyToMany(relationName: "PostTag")
 }
 
-type Comment @model @auth(rules: [{allow: public}]) {
+type Tag @model @auth(rules: [{allow: public}]) {
   id: ID!
-  post: Post @belongsTo
-  content: String!
+  name: String!
+  description: String
+  posts: [Post] @manyToMany(relationName: "PostTag")
 }
  

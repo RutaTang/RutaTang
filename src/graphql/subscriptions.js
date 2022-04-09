@@ -1,63 +1,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateTechStack = /* GraphQL */ `
+  subscription OnCreateTechStack {
+    onCreateTechStack {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateTechStack = /* GraphQL */ `
+  subscription OnUpdateTechStack {
+    onUpdateTechStack {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteTechStack = /* GraphQL */ `
+  subscription OnDeleteTechStack {
+    onDeleteTechStack {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -66,28 +51,28 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -96,28 +81,28 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -126,109 +111,244 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag {
+    onCreateTag {
       id
-      post {
-        id
-        title
-        blog {
+      name
+      description
+      posts {
+        items {
           id
-          name
+          postID
+          tagID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
+        nextToken
+        startedAt
       }
-      content
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag {
+    onUpdateTag {
       id
-      post {
-        id
-        title
-        blog {
+      name
+      description
+      posts {
+        items {
           id
-          name
+          postID
+          tagID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
+        nextToken
+        startedAt
       }
-      content
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag {
+    onDeleteTag {
       id
+      name
+      description
+      posts {
+        items {
+          id
+          postID
+          tagID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreatePostTag = /* GraphQL */ `
+  subscription OnCreatePostTag {
+    onCreatePostTag {
+      id
+      postID
+      tagID
       post {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        description
+        content
+        cover_s3_path
+        Tags {
           nextToken
+          startedAt
         }
         createdAt
         updatedAt
-        blogPostsId
+        _version
+        _deleted
+        _lastChangedAt
       }
-      content
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdatePostTag = /* GraphQL */ `
+  subscription OnUpdatePostTag {
+    onUpdatePostTag {
+      id
+      postID
+      tagID
+      post {
+        id
+        title
+        description
+        content
+        cover_s3_path
+        Tags {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeletePostTag = /* GraphQL */ `
+  subscription OnDeletePostTag {
+    onDeletePostTag {
+      id
+      postID
+      tagID
+      post {
+        id
+        title
+        description
+        content
+        cover_s3_path
+        Tags {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

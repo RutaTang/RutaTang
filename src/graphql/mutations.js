@@ -1,72 +1,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createTechStack = /* GraphQL */ `
+  mutation CreateTechStack(
+    $input: CreateTechStackInput!
+    $condition: ModelTechStackConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createTechStack(input: $input, condition: $condition) {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateTechStack = /* GraphQL */ `
+  mutation UpdateTechStack(
+    $input: UpdateTechStackInput!
+    $condition: ModelTechStackConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateTechStack(input: $input, condition: $condition) {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteTechStack = /* GraphQL */ `
+  mutation DeleteTechStack(
+    $input: DeleteTechStackInput!
+    $condition: ModelTechStackConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteTechStack(input: $input, condition: $condition) {
       id
       name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
+      description
+      logo_s3_path
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -78,28 +63,28 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -111,28 +96,28 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -144,118 +129,262 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      description
+      content
+      cover_s3_path
+      Tags {
         items {
           id
-          content
+          postID
+          tagID
           createdAt
           updatedAt
-          postCommentsId
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-      blogPostsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createTag = /* GraphQL */ `
+  mutation CreateTag(
+    $input: CreateTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createTag(input: $input, condition: $condition) {
       id
-      post {
-        id
-        title
-        blog {
+      name
+      description
+      posts {
+        items {
           id
-          name
+          postID
+          tagID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
+        nextToken
+        startedAt
       }
-      content
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateTag = /* GraphQL */ `
+  mutation UpdateTag(
+    $input: UpdateTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateTag(input: $input, condition: $condition) {
       id
-      post {
-        id
-        title
-        blog {
+      name
+      description
+      posts {
+        items {
           id
-          name
+          postID
+          tagID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
+        nextToken
+        startedAt
       }
-      content
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteTag = /* GraphQL */ `
+  mutation DeleteTag(
+    $input: DeleteTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteTag(input: $input, condition: $condition) {
       id
+      name
+      description
+      posts {
+        items {
+          id
+          postID
+          tagID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createPostTag = /* GraphQL */ `
+  mutation CreatePostTag(
+    $input: CreatePostTagInput!
+    $condition: ModelPostTagConditionInput
+  ) {
+    createPostTag(input: $input, condition: $condition) {
+      id
+      postID
+      tagID
       post {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        description
+        content
+        cover_s3_path
+        Tags {
           nextToken
+          startedAt
         }
         createdAt
         updatedAt
-        blogPostsId
+        _version
+        _deleted
+        _lastChangedAt
       }
-      content
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
-      postCommentsId
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updatePostTag = /* GraphQL */ `
+  mutation UpdatePostTag(
+    $input: UpdatePostTagInput!
+    $condition: ModelPostTagConditionInput
+  ) {
+    updatePostTag(input: $input, condition: $condition) {
+      id
+      postID
+      tagID
+      post {
+        id
+        title
+        description
+        content
+        cover_s3_path
+        Tags {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deletePostTag = /* GraphQL */ `
+  mutation DeletePostTag(
+    $input: DeletePostTagInput!
+    $condition: ModelPostTagConditionInput
+  ) {
+    deletePostTag(input: $input, condition: $condition) {
+      id
+      postID
+      tagID
+      post {
+        id
+        title
+        description
+        content
+        cover_s3_path
+        Tags {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      tag {
+        id
+        name
+        description
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
