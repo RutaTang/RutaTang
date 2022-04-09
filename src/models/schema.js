@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "TechStack": {
-            "name": "TechStack",
+        "Blog": {
+            "name": "Blog",
             "fields": {
                 "id": {
                     "name": "id",
@@ -17,19 +17,19 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "logo": {
-                    "name": "logo",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "url": {
-                    "name": "url",
-                    "isArray": false,
-                    "type": "String",
+                "posts": {
+                    "name": "posts",
+                    "isArray": true,
+                    "type": {
+                        "model": "Post"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "blogPostsId"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -49,7 +49,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TechStacks",
+            "pluralName": "Blogs",
             "attributes": [
                 {
                     "type": "model",
@@ -90,25 +90,31 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
+                "blog": {
+                    "name": "blog",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "model": "Blog"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "blogPostsId"
+                    }
                 },
-                "tags": {
-                    "name": "tags",
+                "comments": {
+                    "name": "comments",
                     "isArray": true,
                     "type": {
-                        "model": "TagPost"
+                        "model": "Comment"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "post"
+                        "associatedWith": "postCommentsId"
                     }
                 },
                 "createdAt": {
@@ -153,8 +159,8 @@ export const schema = {
                 }
             ]
         },
-        "Tag": {
-            "name": "Tag",
+        "Comment": {
+            "name": "Comment",
             "fields": {
                 "id": {
                     "name": "id",
@@ -163,33 +169,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "post": {
+                    "name": "post",
+                    "isArray": false,
+                    "type": {
+                        "model": "Post"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "postCommentsId"
+                    }
+                },
+                "content": {
+                    "name": "content",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Posts": {
-                    "name": "Posts",
-                    "isArray": true,
-                    "type": {
-                        "model": "TagPost"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "tag"
-                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -209,7 +207,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Tags",
+            "pluralName": "Comments",
             "attributes": [
                 {
                     "type": "model",
@@ -232,71 +230,9 @@ export const schema = {
                     }
                 }
             ]
-        },
-        "TagPost": {
-            "name": "TagPost",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "post": {
-                    "name": "post",
-                    "isArray": false,
-                    "type": {
-                        "model": "Post"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "postID"
-                    }
-                },
-                "tag": {
-                    "name": "tag",
-                    "isArray": false,
-                    "type": {
-                        "model": "Tag"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "tagID"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "TagPosts",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                }
-            ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "eb6699bc4c414ce59f7f51ee1f3d0631"
+    "version": "165944a36979cd395e3b22145bbfeff0"
 };

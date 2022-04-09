@@ -4,7 +4,7 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-type TechStackMetaData = {
+type BlogMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -12,53 +12,37 @@ type PostMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TagMetaData = {
+type CommentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TagPostMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-export declare class TechStack {
+export declare class Blog {
   readonly id: string;
   readonly name: string;
-  readonly logo: string;
-  readonly url?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<TechStack, TechStackMetaData>);
-  static copyOf(source: TechStack, mutator: (draft: MutableModel<TechStack, TechStackMetaData>) => MutableModel<TechStack, TechStackMetaData> | void): TechStack;
+  readonly posts?: (Post | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Blog, BlogMetaData>);
+  static copyOf(source: Blog, mutator: (draft: MutableModel<Blog, BlogMetaData>) => MutableModel<Blog, BlogMetaData> | void): Blog;
 }
 
 export declare class Post {
   readonly id: string;
   readonly title: string;
-  readonly description?: string;
-  readonly tags?: (TagPost | null)[];
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
+  readonly blog?: Blog | null;
+  readonly comments?: (Comment | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
   constructor(init: ModelInit<Post, PostMetaData>);
   static copyOf(source: Post, mutator: (draft: MutableModel<Post, PostMetaData>) => MutableModel<Post, PostMetaData> | void): Post;
 }
 
-export declare class Tag {
+export declare class Comment {
   readonly id: string;
-  readonly name: string;
-  readonly description?: string;
-  readonly Posts?: (TagPost | null)[];
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<Tag, TagMetaData>);
-  static copyOf(source: Tag, mutator: (draft: MutableModel<Tag, TagMetaData>) => MutableModel<Tag, TagMetaData> | void): Tag;
-}
-
-export declare class TagPost {
-  readonly id: string;
-  readonly post: Post;
-  readonly tag: Tag;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<TagPost, TagPostMetaData>);
-  static copyOf(source: TagPost, mutator: (draft: MutableModel<TagPost, TagPostMetaData>) => MutableModel<TagPost, TagPostMetaData> | void): TagPost;
+  readonly post?: Post | null;
+  readonly content: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Comment, CommentMetaData>);
+  static copyOf(source: Comment, mutator: (draft: MutableModel<Comment, CommentMetaData>) => MutableModel<Comment, CommentMetaData> | void): Comment;
 }
