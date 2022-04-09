@@ -55,6 +55,7 @@ function Home() {
           <h1 className="z-10 text-4xl bg-white text-black font-black md:text-6xl mix-blend-lighten">
             Ruta Tang
           </h1>
+          {/* make text with video background */}
           <div className="relative h-80 md:h-56 w-full">
             <video
               className="absolute object-cover left-5 top-5 w-[90%] h-[90%]"
