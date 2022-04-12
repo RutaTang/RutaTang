@@ -1,16 +1,21 @@
-import AutoLoadRefresh from "../components/AutoLoadRefresh";
+import { useEffect, useState } from "react";
+import { queryAllTechStacks } from "../backend/query";
 
-async function get() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return 1;
-}
 const TestPage = () => {
+  useEffect(() => {
+    queryAllTechStacks().then(console.log);
+  }, []);
+  const [c, setC] = useState(false);
   return (
-    <AutoLoadRefresh>
-      <div>
-        <h1>Test</h1>
-      </div>
-    </AutoLoadRefresh>
+    <div>
+      <h1
+        onClick={() => {
+          setC((p) => !p);
+        }}
+      >
+        Test{c ? 1 : 2}
+      </h1>
+    </div>
   );
 };
 

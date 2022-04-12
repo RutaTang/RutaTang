@@ -13,9 +13,6 @@ export const createTechStack = /* GraphQL */ `
       logo_s3_path
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -31,9 +28,6 @@ export const updateTechStack = /* GraphQL */ `
       logo_s3_path
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -49,9 +43,6 @@ export const deleteTechStack = /* GraphQL */ `
       logo_s3_path
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -67,24 +58,10 @@ export const createPost = /* GraphQL */ `
       content
       cover_s3_path
       Tags {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -100,24 +77,10 @@ export const updatePost = /* GraphQL */ `
       content
       cover_s3_path
       Tags {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -133,24 +96,10 @@ export const deletePost = /* GraphQL */ `
       content
       cover_s3_path
       Tags {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -164,24 +113,10 @@ export const createTag = /* GraphQL */ `
       name
       description
       posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -195,24 +130,10 @@ export const updateTag = /* GraphQL */ `
       name
       description
       posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -226,24 +147,10 @@ export const deleteTag = /* GraphQL */ `
       name
       description
       posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -262,35 +169,18 @@ export const createPostTag = /* GraphQL */ `
         description
         content
         cover_s3_path
-        Tags {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       tag {
         id
         name
         description
-        posts {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -309,35 +199,18 @@ export const updatePostTag = /* GraphQL */ `
         description
         content
         cover_s3_path
-        Tags {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       tag {
         id
         name
         description
-        posts {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -356,35 +229,18 @@ export const deletePostTag = /* GraphQL */ `
         description
         content
         cover_s3_path
-        Tags {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       tag {
         id
         name
         description
-        posts {
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

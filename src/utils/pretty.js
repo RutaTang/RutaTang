@@ -1,25 +1,10 @@
-import { convertISODatetimeToDate } from "../utils/datetime-parser";
-
-function prettyTag(tag) {
+function prettyTechStack(techStack) {
   return {
-    id: tag.id,
-    name: tag.name,
-    posts: tag.posts.map(prettyPost),
+    id: techStack.id,
+    logoUrl: techStack.logoUrl,
+    name: techStack.name,
+    description: techStack.description,
   };
 }
 
-function prettyPost(post) {
-  return {
-    id: post.id,
-    title: post.title,
-    content: post.content,
-    description: post.description,
-    createdAt: convertISODatetimeToDate(post.createdAt),
-    updatedAt: convertISODatetimeToDate(post.updatedAt),
-    timeTaken: post.timeTaken,
-    cover: post.cover,
-    tagIds: post.tagIds,
-  };
-}
-
-export { prettyTag, prettyPost };
+export { prettyTechStack };

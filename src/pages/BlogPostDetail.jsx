@@ -5,12 +5,9 @@ import { FiChevronLeft } from "react-icons/fi";
 import "github-markdown-css/github-markdown-light.css";
 
 import { DataStore } from "aws-amplify";
-import { Post } from "../models";
 
 // import NotFound from "./NotFound"
 import Header from "../components/Header";
-// import Footer from "../components/Footer"
-import { prettyPost } from "../utils/pretty";
 
 const BlogPostDetail = () => {
   const { id } = useParams();

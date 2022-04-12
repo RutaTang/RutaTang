@@ -3,18 +3,9 @@ import { FaSearch, FaWifi } from "react-icons/fa";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { animated, config, useTransition } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
-import _ from "lodash";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-//  remove redundant items by its id
-//  @param modelItem: item with id property
-function removeRedundancyById(modelItem) {
-  return modelItem.filter(
-    (post, index, self) => self.findIndex((p) => p.id === post.id) === index
-  );
-}
 
 const Blog = () => {
   const [tagsWithPosts, setTagsWithPosts] = useState([]);
@@ -42,6 +33,8 @@ const Blog = () => {
   const choosePost = (post) => {
     navigate(`/blog/${post.id}`);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="w-screen h-screen flex flex-col justify-between">
