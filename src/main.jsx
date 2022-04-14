@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Amplify from "aws-amplify";
-import PubSub from "@aws-amplify/pubsub";
+// import PubSub from "@aws-amplify/pubsub";
 import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);
-PubSub.configure(awsconfig);
+// PubSub.configure(awsconfig);
 
 import "./index.css";
 import Home from "./pages/Home";

@@ -1,3 +1,7 @@
+import { API, graphqlOperation, DataStore, Predicates } from "aws-amplify";
+import { TechStack } from "../models";
+import { listTodos } from "../graphql/queries";
+
 import { animated, config, useSpring } from "@react-spring/web";
 import { useEffect, useState } from "react";
 
@@ -18,7 +22,9 @@ function Home() {
 
   const [techStacks, setTechStacks] = useState(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    DataStore.query(TechStack).then(console.log);
+  });
 
   return (
     <div>

@@ -1,6 +1,6 @@
 projects:
-  rutatang:
-    schemaPath: amplify/backend/api/rutatang/build/schema.graphql
+  rutatangblog:
+    schemaPath: amplify/backend/api/rutatangblog/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

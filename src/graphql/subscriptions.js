@@ -6,10 +6,13 @@ export const onCreateTechStack = /* GraphQL */ `
     onCreateTechStack {
       id
       name
-      description
       logo_s3_path
+      familarity
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -18,10 +21,13 @@ export const onUpdateTechStack = /* GraphQL */ `
     onUpdateTechStack {
       id
       name
-      description
       logo_s3_path
+      familarity
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -30,181 +36,55 @@ export const onDeleteTechStack = /* GraphQL */ `
     onDeleteTechStack {
       id
       name
-      description
       logo_s3_path
+      familarity
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
-      id
-      title
-      description
-      content
-      cover_s3_path
-      Tags {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
-      id
-      title
-      description
-      content
-      cover_s3_path
-      Tags {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
-      id
-      title
-      description
-      content
-      cover_s3_path
-      Tags {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag {
-    onCreateTag {
+export const onCreateTodo = /* GraphQL */ `
+  subscription OnCreateTodo {
+    onCreateTodo {
       id
       name
       description
-      posts {
-        nextToken
-      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag {
-    onUpdateTag {
+export const onUpdateTodo = /* GraphQL */ `
+  subscription OnUpdateTodo {
+    onUpdateTodo {
       id
       name
       description
-      posts {
-        nextToken
-      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag {
-    onDeleteTag {
+export const onDeleteTodo = /* GraphQL */ `
+  subscription OnDeleteTodo {
+    onDeleteTodo {
       id
       name
       description
-      posts {
-        nextToken
-      }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreatePostTag = /* GraphQL */ `
-  subscription OnCreatePostTag {
-    onCreatePostTag {
-      id
-      postID
-      tagID
-      post {
-        id
-        title
-        description
-        content
-        cover_s3_path
-        createdAt
-        updatedAt
-      }
-      tag {
-        id
-        name
-        description
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePostTag = /* GraphQL */ `
-  subscription OnUpdatePostTag {
-    onUpdatePostTag {
-      id
-      postID
-      tagID
-      post {
-        id
-        title
-        description
-        content
-        cover_s3_path
-        createdAt
-        updatedAt
-      }
-      tag {
-        id
-        name
-        description
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePostTag = /* GraphQL */ `
-  subscription OnDeletePostTag {
-    onDeletePostTag {
-      id
-      postID
-      tagID
-      post {
-        id
-        title
-        description
-        content
-        cover_s3_path
-        createdAt
-        updatedAt
-      }
-      tag {
-        id
-        name
-        description
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

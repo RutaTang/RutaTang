@@ -4,11 +4,9 @@ import { schema } from './schema';
 
 
 
-const { TechStack, Post, Tag, PostTag } = initSchema(schema);
+const { TechStack, Todo } = initSchema(schema);
 
 export {
   TechStack,
-  Post,
-  Tag,
-  PostTag
+  Todo
 };

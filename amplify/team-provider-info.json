@@ -1,23 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-rutatang-dev-151301-authRole",
-      "UnauthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatang-dev-151301-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatang-dev-151301-authRole",
+      "AuthRoleName": "amplify-rutatangblog-dev-122831-authRole",
+      "UnauthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatangblog-dev-122831-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatangblog-dev-122831-authRole",
       "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-rutatang-dev-151301-deployment",
-      "UnauthRoleName": "amplify-rutatang-dev-151301-unauthRole",
-      "StackName": "amplify-rutatang-dev-151301",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:760537937840:stack/amplify-rutatang-dev-151301/85c40a90-b7d4-11ec-b4c3-0664bc24cb22",
-      "AmplifyAppId": "d20qedb3kcong6"
+      "DeploymentBucketName": "amplify-rutatangblog-dev-122831-deployment",
+      "UnauthRoleName": "amplify-rutatangblog-dev-122831-unauthRole",
+      "StackName": "amplify-rutatangblog-dev-122831",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:760537937840:stack/amplify-rutatangblog-dev-122831/5cdad610-bbab-11ec-86d0-06d6cb3c9be8",
+      "AmplifyAppId": "d6z6o40h5b7ca"
     },
     "categories": {
       "auth": {
-        "rutatang04739d21": {}
+        "rutatangblogea3ef4a7": {},
+        "true": {}
       },
       "hosting": {
         "amplifyhosting": {
-          "appId": "d20qedb3kcong6",
+          "appId": "d6z6o40h5b7ca",
           "type": "cicd"
         }
       }

@@ -6,10 +6,13 @@ export const getTechStack = /* GraphQL */ `
     getTechStack(id: $id) {
       id
       name
-      description
       logo_s3_path
+      familarity
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -23,125 +26,109 @@ export const listTechStacks = /* GraphQL */ `
       items {
         id
         name
-        description
         logo_s3_path
+        familarity
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      id
-      title
-      description
-      content
-      cover_s3_path
-      Tags {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const syncTechStacks = /* GraphQL */ `
+  query SyncTechStacks(
+    $filter: ModelTechStackFilterInput
     $limit: Int
     $nextToken: String
+    $lastSync: AWSTimestamp
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    syncTechStacks(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
       items {
         id
-        title
-        description
-        content
-        cover_s3_path
+        name
+        logo_s3_path
+        familarity
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
   }
 `;
-export const getTag = /* GraphQL */ `
-  query GetTag($id: ID!) {
-    getTag(id: $id) {
+export const getTodo = /* GraphQL */ `
+  query GetTodo($id: ID!) {
+    getTodo(id: $id) {
       id
       name
       description
-      posts {
-        nextToken
-      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const listTags = /* GraphQL */ `
-  query ListTags(
-    $filter: ModelTagFilterInput
+export const listTodos = /* GraphQL */ `
+  query ListTodos(
+    $filter: ModelTodoFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         description
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
   }
 `;
-export const getPostTag = /* GraphQL */ `
-  query GetPostTag($id: ID!) {
-    getPostTag(id: $id) {
-      id
-      postID
-      tagID
-      post {
-        id
-        title
-        description
-        content
-        cover_s3_path
-        createdAt
-        updatedAt
-      }
-      tag {
+export const syncTodos = /* GraphQL */ `
+  query SyncTodos(
+    $filter: ModelTodoFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTodos(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
         id
         name
         description
         createdAt
         updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPostTags = /* GraphQL */ `
-  query ListPostTags(
-    $filter: ModelPostTagFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPostTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        postID
-        tagID
-        createdAt
-        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
   }
 `;
