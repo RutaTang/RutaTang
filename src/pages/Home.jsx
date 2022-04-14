@@ -1,12 +1,30 @@
-import { API, graphqlOperation, DataStore, Predicates } from "aws-amplify";
+import {
+  graphqlOperation,
+  DataStore,
+  Predicates,
+  SortDirection,
+} from "aws-amplify";
 import { TechStack } from "../models";
-import { listTodos } from "../graphql/queries";
+import { getPublicFileUrl } from "../utils/storage";
+import { prettyTechStack } from "../utils/pretty";
 
 import { animated, config, useSpring } from "@react-spring/web";
 import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+async function getTechStacks() {
+  const tss = await DataStore.query(TechStack, Predicates.ALl, {
+    sort: (s) => s.familarity(SortDirection.DESCENDING),
+  });
+  const ps = tss.map(async (ts) => {
+    let new_ts = { ...ts };
+    new_ts.logoUrl = await getPublicFileUrl(ts.logo_s3_path);
+    return prettyTechStack(new_ts);
+  });
+  return await Promise.all(ps);
+}
 
 function Home() {
   const logoSpringConfig = (configProps) => {
@@ -23,7 +41,7 @@ function Home() {
   const [techStacks, setTechStacks] = useState(null);
 
   useEffect(() => {
-    DataStore.query(TechStack).then(console.log);
+    getTechStacks().then(setTechStacks);
   });
 
   return (

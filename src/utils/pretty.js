@@ -4,6 +4,7 @@ function prettyTechStack(techStack) {
     logoUrl: techStack.logoUrl,
     name: techStack.name,
     description: techStack.description,
+    familarity: techStack.familarity,
   };
 }
 
