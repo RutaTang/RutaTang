@@ -1,0 +1,13 @@
+type TechStack @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  logo_s3_path: String!
+  familarity: String!
+}
+
+type Todo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+}
+ 
