@@ -5,10 +5,41 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import HeaderC from "../components/Header";
 
+import {
+  Amplify,
+  API,
+  graphqlOperation,
+  Auth,
+  withSSRContext,
+} from "aws-amplify";
+import * as queries from "../src/graphql/queries";
+import awsExports from "../src/aws-exports";
+import { getPublicFile } from "../src/utils/storage";
+Amplify.configure({ ...awsExports });
+
+async function getTechStacks() {
+  return await API.graphql(graphqlOperation(queries.listTechStacks)).then(
+    (res) => {
+      let items = res.data.listTechStacks.items;
+      // console.log(items);
+      items = Promise.all(
+        items.map(async (item) => {
+          const newItem = { ...item };
+          newItem.logoURL = (await getPublicFile(item.logo_s3_path));
+          return newItem;
+        })
+      );
+      return items;
+    }
+  );
+}
+
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
 
-  useEffect(() => {});
+  useEffect(() => {
+    getTechStacks().then(setTechStacks);
+  }, []);
 
   return (
     <div>
@@ -43,8 +74,7 @@ function Home() {
         </div>
         <div>
           <img
-            onClick={() => {
-            }}
+            onClick={() => {}}
             src="/svgs/rabbit.svg"
             className="h-40 md:h-52 cursor-pointer"
             alt=""
@@ -128,12 +158,12 @@ function Home() {
       <div className="w-[85vw] mx-auto mt-[15vh] md:mt-[30vh]">
         <h1 className="text-2xl font-bold">TECH STACK</h1>
         <div className="flex flex-row flex-wrap mt-10 gap-y-10 items-center justify-center md:justify-start">
-          {techStacks?.map((el,idx) => (
+          {techStacks?.map((el, idx) => (
             <div
               key={`ts-${idx}`}
               className="flex flex-col items-center w-[120px] h-[120px] gap-3"
             >
-              <img className="w-[80px] h-[80px]" src={el.logoUrl} alt="" />
+              <Image width="80px" height="80px" src={el.logoURL} alt="" />
               <p>{el.name}</p>
             </div>
           ))}
