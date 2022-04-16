@@ -22,7 +22,7 @@ const Header = () => {
       {/*Nav-desktop*/}
       <div className="text-black font-semibold space-x-10 hidden md:block">
         {links.map((e) => (
-          <Link href={e.path}>{e.name}</Link>
+          <Link key={`d-${e.name}`} href={e.path}>{e.name}</Link>
         ))}
       </div>
 
@@ -45,7 +45,7 @@ const Header = () => {
           />
           <div className="flex flex-col space-y-10 mt-5">
             {links.map((link) => (
-              <Link href={link.path}>{link.name}</Link>
+              <Link key={`m-${link.name}`} href={link.path}>{link.name}</Link>
             ))}
           </div>
         </div>

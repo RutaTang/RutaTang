@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import HeaderC from "../components/Header";
 
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <div>
-      <Header />
+      <HeaderC />
       {/*Introduction*/}
       <div className="flex flex-wrap justify-center flex-col items-center w-[85vw] mx-auto md:mx-0 h-[95vh] space-y-16 md:flex-row md:justify-around md:relative">
         <div className="space-y-7 md:w-1/2 md:space-y-10">
@@ -44,7 +44,6 @@ function Home() {
         <div>
           <img
             onClick={() => {
-              logoRabbitApi.start(logoSpringConfig({ delay: 0 }));
             }}
             src="/svgs/rabbit.svg"
             className="h-40 md:h-52 cursor-pointer"
@@ -129,9 +128,9 @@ function Home() {
       <div className="w-[85vw] mx-auto mt-[15vh] md:mt-[30vh]">
         <h1 className="text-2xl font-bold">TECH STACK</h1>
         <div className="flex flex-row flex-wrap mt-10 gap-y-10 items-center justify-center md:justify-start">
-          {techStacks?.map((el) => (
+          {techStacks?.map((el,idx) => (
             <div
-              key={`${el.id}`}
+              key={`ts-${idx}`}
               className="flex flex-col items-center w-[120px] h-[120px] gap-3"
             >
               <img className="w-[80px] h-[80px]" src={el.logoUrl} alt="" />
