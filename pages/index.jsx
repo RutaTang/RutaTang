@@ -5,40 +5,11 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import HeaderC from "../components/Header";
 
-import {
-  Amplify,
-  API,
-  graphqlOperation,
-  Auth,
-  withSSRContext,
-} from "aws-amplify";
-import * as queries from "../src/graphql/queries";
-import awsExports from "../src/aws-exports";
-import { getPublicFile } from "../src/utils/storage";
-Amplify.configure({ ...awsExports });
-
-async function getTechStacks() {
-  return await API.graphql(graphqlOperation(queries.listTechStacks)).then(
-    (res) => {
-      let items = res.data.listTechStacks.items;
-      // console.log(items);
-      items = Promise.all(
-        items.map(async (item) => {
-          const newItem = { ...item };
-          newItem.logoURL = (await getPublicFile(item.logo_s3_path));
-          return newItem;
-        })
-      );
-      return items;
-    }
-  );
-}
 
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
 
   useEffect(() => {
-    getTechStacks().then(setTechStacks);
   }, []);
 
   return (
