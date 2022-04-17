@@ -1,15 +1,33 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import Footer from "../components/Footer";
 import HeaderC from "../components/Header";
 
+import { DataStore } from "aws-amplify";
+import { TechStack } from "../src/models";
+import { getPublicFileURL } from "../src/utils/storage";
+
+async function getTechStacks() {
+  let items = await DataStore.query(TechStack);
+  items = items.map(async (item) => {
+    const newItem = { ...item };
+    newItem.logoURL = await getPublicFileURL(item.logo_s3_path);
+    return newItem;
+  });
+  items = await Promise.all(items);
+  return items;
+}
 
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
 
   useEffect(() => {
+    getTechStacks().then((items) => {
+      setTechStacks(items);
+    });
   }, []);
 
   return (
@@ -28,29 +46,20 @@ function Home() {
           <h1 className="z-10 text-4xl bg-white text-black font-black md:text-6xl mix-blend-lighten">
             Ruta Tang
           </h1>
-          {/* make text with video background */}
-          <div className="relative h-80 md:h-56 w-full">
-            <video
-              className="absolute object-cover left-5 top-5 w-[90%] h-[90%]"
-              autoPlay
-              loop
-              src="/videos/text_bg_dark_sea.mp4"
-            ></video>
-            <h2 className="mix-blend-lighten bg-white w-full h-full absolute text-2xl font-semibold text-slate-600 leading-10 md:leading-[3.5rem] md:text-3xl">
-              A Frontend and Blockchain Developer | Web 3.0 | DAO | Data Analyst
-              | Artificial Intelligence Learner | Finance and Quant Lover | Song
-              Writer & Producer
-            </h2>
-          </div>
+          <h2 className="text-2xl font-semibold text-slate-600 leading-10 md:leading-[3.5rem] md:text-3xl">
+            A Frontend and Blockchain Developer | Web 3.0 | DAO | Data Analyst |
+            Artificial Intelligence Learner | Finance and Quant Lover | Song
+            Writer & Producer
+          </h2>
         </div>
-        <div>
+        <motion.div animate={{ scale: 1 }} initial={{ scale: 0.5 }}>
           <img
             onClick={() => {}}
             src="/svgs/rabbit.svg"
             className="h-40 md:h-52 cursor-pointer"
             alt=""
           />
-        </div>
+        </motion.div>
       </div>
       {/*About Me*/}
       <div className="w-[85vw] mx-auto">

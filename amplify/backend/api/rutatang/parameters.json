@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "rutatang",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-04-17T09:04:21.828Z"
+}

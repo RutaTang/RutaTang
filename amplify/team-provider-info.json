@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rutatang-dev-152944-authRole",
+      "UnauthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatang-dev-152944-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::760537937840:role/amplify-rutatang-dev-152944-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-rutatang-dev-152944-deployment",
+      "UnauthRoleName": "amplify-rutatang-dev-152944-unauthRole",
+      "StackName": "amplify-rutatang-dev-152944",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:760537937840:stack/amplify-rutatang-dev-152944/2d736190-be20-11ec-b434-02ae69eccaba",
+      "AmplifyAppId": "d353mqlsoddzlf"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d353mqlsoddzlf",
+          "type": "cicd"
+        }
+      },
+      "auth": {
+        "RutaTang": {}
+      }
+    }
+  }
+}

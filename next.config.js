@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      "rutatangbloga5474d3792db45619776589ad91ced6e122831-dev.s3.ap-southeast-1.amazonaws.com",
+      "rutatang-storage-62b1112a152944-dev.s3.ap-southeast-1.amazonaws.com",
     ],
   },
 };

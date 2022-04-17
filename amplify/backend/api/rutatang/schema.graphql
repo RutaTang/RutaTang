@@ -1,0 +1,8 @@
+type TechStack @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  logo_s3_path: String!
+  familarity: Int!
+  description: String
+}
+ 
