@@ -4,8 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiMoonFoggyLine } from "react-icons/ri";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme as useNextTheme } from 'next-themes'
-import { useTheme  } from '@nextui-org/react'
+import { useTheme as useNextTheme } from "next-themes";
+import { useTheme } from "@nextui-org/react";
 
 const LINKS = [
   { path: "/", name: "HOME" },
@@ -18,7 +18,7 @@ const LINKS = [
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [links] = useState(LINKS);
-	const { setTheme } = useNextTheme();
+  const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
   return (
     <div className="bg-white dark:bg-black fixed top-0 z-50 flex items-center justify-between w-screen px-10 py-5 bg-opacity-90">
@@ -58,7 +58,7 @@ const Header = () => {
       <button className="md:hidden fixed right-10 top-6">
         {!isOpen && (
           <BsList
-            className="text-xl text-black"
+            className="text-xl text-black dark:text-slate-300"
             onClick={() => {
               setIsOpen(true);
             }}
@@ -72,9 +72,9 @@ const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white space-y-5">
+            <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white dark:bg-black space-y-5 text-black dark:text-slate-300">
               <AiOutlineClose
-                className="self-end mt-6 mr-10 text-xl text-black"
+                className="self-end mt-6 mr-10 text-xl"
                 onClick={() => {
                   setIsOpen(false);
                 }}
@@ -82,10 +82,27 @@ const Header = () => {
               {LINKS.map((e) => {
                 return (
                   <Link key={`m-${e.name}`} href={e.path}>
-                    <a className="text-xl text-black">{e.name}</a>
+                    <a className="text-xl">{e.name}</a>
                   </Link>
                 );
               })}
+              <button>
+                {!isDark ? (
+                  <BsEmojiSunglasses
+                    onClick={() => {
+                      setTheme("dark");
+                    }}
+                    className="text-xl cursor-pointer"
+                  />
+                ) : (
+                  <RiMoonFoggyLine
+                    onClick={() => {
+                      setTheme("light");
+                    }}
+                    className="text-xl cursor-pointer"
+                  />
+                )}
+              </button>
             </div>
           </motion.nav>
         )}

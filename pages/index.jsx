@@ -9,7 +9,7 @@ import HeaderC from "../components/Header";
 import { DataStore } from "aws-amplify";
 import { TechStack } from "../src/models";
 import { getPublicFileURL } from "../src/utils/storage";
-
+import { useTheme } from "@nextui-org/react";
 
 async function getTechStacks() {
   let items = await DataStore.query(TechStack);
@@ -24,6 +24,7 @@ async function getTechStacks() {
 
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
+  const { isDark, type } = useTheme();
 
   useEffect(() => {
     getTechStacks().then((items) => {
@@ -101,8 +102,8 @@ function Home() {
           </h1>
           <div className="flex md:flex-row flex-col items-center md: justify-between mt-16">
             <div className="dark:text-slate-400 space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
-              <img className="w-[100px]" src="/images/brain.png" alt="" />
-              <p className="text-xl text-black ">Machinea Learning</p>
+              <img className="w-[100px]" src={`/images/brain-${type}.png`} alt="" />
+              <p className="text-xl text-black dark:text-slate-400">Machinea Learning</p>
               <p>( Master's Degree )</p>
               <p>2021/08 ~ 2022/08</p>
             </div>
@@ -118,12 +119,16 @@ function Home() {
           </div>
           <div className="flex md:flex-row flex-col items-center md: justify-between mt-16">
             <div className="dark:text-slate-400 space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
-              <div className="flex flex-row justify-around">
-                <img className="w-[80px]" src="/images/atomic.png" alt="" />
-                <img className="w-[80px]" src="/images/emotion.png" alt="" />
+              <div className="flex flex-row justify-around text-black dark:text-slate-300">
+                <img
+                  className="w-[80px]"
+                  src={`/images/atomic-${type}.png`}
+                  alt=""
+                />
+                <img className="w-[80px]" src={`/images/brain-${type}.png`} alt="" />
               </div>
-              <p className="text-xl text-black">Computer Science</p>
-              <p className="text-xl text-black">Psychology</p>
+              <p className="text-xl text-black dark:text-slate-400">Computer Science</p>
+              <p className="text-xl text-black dark:text-slate-400">Psychology</p>
               <p>( Bachelor's Degree )</p>
               <p>2018/08 ~ 2020/08</p>
             </div>
