@@ -6,7 +6,7 @@ const Footer = (props) => {
   return (
     <div
       style={{ marginTop: mt }}
-      className="flex bg-white dark:bg-black flex-col md:flex-row justify-around bg-white shadow shadow-gray-300 items-center h-20 md:h-16"
+      className="flex dark:bg-black flex-col md:flex-row justify-around bg-white shadow shadow-gray-300 dark:shadow-slate-50 items-center h-20 md:h-16"
     >
       <p className="md:flex items-center opacity-0 hidden">
         <AiOutlineCopyrightCircle />

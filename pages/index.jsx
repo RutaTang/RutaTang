@@ -10,6 +10,7 @@ import { DataStore } from "aws-amplify";
 import { TechStack } from "../src/models";
 import { getPublicFileURL } from "../src/utils/storage";
 
+
 async function getTechStacks() {
   let items = await DataStore.query(TechStack);
   items = items.map(async (item) => {
@@ -99,14 +100,14 @@ function Home() {
             EDUCATION EXPERIENCE
           </h1>
           <div className="flex md:flex-row flex-col items-center md: justify-between mt-16">
-            <div className="space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
+            <div className="dark:text-slate-400 space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
               <img className="w-[100px]" src="/images/brain.png" alt="" />
               <p className="text-xl text-black ">Machinea Learning</p>
               <p>( Master's Degree )</p>
               <p>2021/08 ~ 2022/08</p>
             </div>
             <div className="md:w-8/12 order-1 md:order-2">
-              <h1 className="text-2xl md:text-3xl text-black text-center md:text-left">
+              <h1 className="dark:text-slate-400 text-2xl md:text-3xl text-black text-center md:text-left">
                 National University of Singapore
               </h1>
               <p className="mt-5 text-center md:text-left dark:text-slate-400 text-xl">
@@ -116,7 +117,7 @@ function Home() {
             </div>
           </div>
           <div className="flex md:flex-row flex-col items-center md: justify-between mt-16">
-            <div className="space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
+            <div className="dark:text-slate-400 space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
               <div className="flex flex-row justify-around">
                 <img className="w-[80px]" src="/images/atomic.png" alt="" />
                 <img className="w-[80px]" src="/images/emotion.png" alt="" />
@@ -127,7 +128,7 @@ function Home() {
               <p>2018/08 ~ 2020/08</p>
             </div>
             <div className="md:w-8/12 order-1 md:order-2">
-              <h1 className="text-2xl md:text-3xl text-black text-center md:text-left">
+              <h1 className="dark:text-slate-400 text-2xl md:text-3xl text-black text-center md:text-left">
                 University of Colorado At Boulder
               </h1>
               <p className="mt-5 dark:text-slate-400 text-xl">
