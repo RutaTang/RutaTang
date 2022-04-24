@@ -8,11 +8,33 @@ import HeaderC from "../components/Header";
 
 import { useTheme } from "@nextui-org/react";
 
+import { gql, GraphQLClient } from "graphql-request";
+const graphcms = new GraphQLClient(
+  "https://api-ap-northeast-1.graphcms.com/v2/cl2d8cj7u4pth01z92youaup6/master"
+);
+
+const QUERY = gql`
+  {
+    techStacks {
+      name
+      logo {
+        url
+      }
+    }
+  }
+`;
+
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
   const { isDark, type } = useTheme();
 
   useEffect(() => {
+    graphcms
+      .request(QUERY)
+      .then((data) => {
+        setTechStacks(data.techStacks);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -85,8 +107,14 @@ function Home() {
           </h1>
           <div className="flex md:flex-row flex-col items-center md: justify-between mt-16">
             <div className="dark:text-slate-400 space-y-3 w-[200px] h-[200px] flex flex-col items-center order-2 md:order-1 mt-8 md:mt-0">
-              <img className="w-[100px]" src={`/images/brain-${type}.png`} alt="" />
-              <p className="text-xl text-black dark:text-slate-400">Machinea Learning</p>
+              <img
+                className="w-[100px]"
+                src={`/images/brain-${type}.png`}
+                alt=""
+              />
+              <p className="text-xl text-black dark:text-slate-400">
+                Machinea Learning
+              </p>
               <p>( Master's Degree )</p>
               <p>2021/08 ~ 2022/08</p>
             </div>
@@ -108,10 +136,18 @@ function Home() {
                   src={`/images/atomic-${type}.png`}
                   alt=""
                 />
-                <img className="w-[80px]" src={`/images/brain-${type}.png`} alt="" />
+                <img
+                  className="w-[80px]"
+                  src={`/images/brain-${type}.png`}
+                  alt=""
+                />
               </div>
-              <p className="text-xl text-black dark:text-slate-400">Computer Science</p>
-              <p className="text-xl text-black dark:text-slate-400">Psychology</p>
+              <p className="text-xl text-black dark:text-slate-400">
+                Computer Science
+              </p>
+              <p className="text-xl text-black dark:text-slate-400">
+                Psychology
+              </p>
               <p>( Bachelor's Degree )</p>
               <p>2018/08 ~ 2020/08</p>
             </div>
@@ -138,7 +174,7 @@ function Home() {
                 key={`ts-${idx}`}
                 className="flex flex-col items-center w-[120px] h-[120px] gap-3"
               >
-                <Image width="80px" height="80px" src={el.logoURL} alt="" />
+                <Image width="80px" height="80px" src={el.logo.url} alt="" />
                 <p className="dark:text-slate-500">{el.name}</p>
               </div>
             ))}
