@@ -6,30 +6,13 @@ import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import HeaderC from "../components/Header";
 
-import { DataStore } from "aws-amplify";
-import { TechStack } from "../src/models";
-import { getPublicFileURL } from "../src/utils/storage";
 import { useTheme } from "@nextui-org/react";
-
-async function getTechStacks() {
-  let items = await DataStore.query(TechStack);
-  items = items.map(async (item) => {
-    const newItem = { ...item };
-    newItem.logoURL = await getPublicFileURL(item.logo_s3_path);
-    return newItem;
-  });
-  items = await Promise.all(items);
-  return items;
-}
 
 function Home() {
   const [techStacks, setTechStacks] = useState(null);
   const { isDark, type } = useTheme();
 
   useEffect(() => {
-    getTechStacks().then((items) => {
-      setTechStacks(items);
-    });
   }, []);
 
   return (

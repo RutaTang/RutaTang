@@ -5,10 +5,6 @@ import { ThemeProvider } from "next-themes";
 
 import HighWrap from '../components/HighWrap';
 
-import awsExports from "../src/aws-exports";
-import { Amplify, API, Auth } from "aws-amplify";
-Amplify.configure(awsExports);
-
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider attribute="class">
