@@ -1,29 +1,15 @@
 {
-  "name": "ruta-tang",
-  "version": "0.1.0",
+  "name": "@example/basics",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@nextui-org/react": "^1.0.8-beta.5",
-    "framer-motion": "^6.3.0",
-    "graphql": "^16.3.0",
-    "graphql-request": "^4.2.0",
-    "next": "12.1.5",
-    "next-themes": "^0.1.1",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-icons": "^4.3.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "eslint": "8.13.0",
-    "eslint-config-next": "12.1.5",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24"
+    "astro": "^1.1.3"
   }
 }
