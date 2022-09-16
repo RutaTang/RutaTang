@@ -14,6 +14,7 @@ const Home = () => {
   return (
     <div
       style={{
+        backgroundPosition:"center",
         backgroundImage:
           theme === "light"
             ? "url('/Moon-Light.svg')"
@@ -26,7 +27,7 @@ const Home = () => {
           Welcome to Ruta&apos;s Web
         </h1>
         <div className="w-full flex-col mt-10 space-y-10">
-          <div className="w-[80%] mx-auto text-left md:h-[20vh] h-[40vh]">
+          <div className="w-[80%] mx-auto text-left md:h-[20vh] h-[40vh] overflow-scroll bg-transparent">
             {tab === Tab.Interests && (
               /* Interests content */
               <div className="text-center">
@@ -47,7 +48,7 @@ const Home = () => {
             )}
             {tab === Tab.Education && (
               /*Education content*/
-              <div className="flex justify-center items-center space-x-10">
+              <div className="flex justify-center items-center space-x-10 h-full">
                 <div>
                   <Image height={120} width={120} src="/CUB.png" alt="" />
                 </div>
