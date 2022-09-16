@@ -5,6 +5,7 @@ const NotFound = () => {
   return (
     <div
       style={{
+        backgroundPosition:"center",
         backgroundImage:
           theme === "light"
             ? "url('/Moon-Light.svg')"
@@ -12,7 +13,7 @@ const NotFound = () => {
       }}
       className="min-h-screen min-w-screen pt-24 flex justify-center items-center"
     >
-      <div className="-mt-[10%] text-center">
+      <div className="text-center">
         <h1 className="text-6xl font-black">404</h1>
         <h1 className="text-5xl font-black">...</h1>
         <h1 className="text-5xl font-black mt-5">Find Your Own Way</h1>
