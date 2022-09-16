@@ -1,33 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
-import { useWindowSize } from "@react-hook/window-size";
 
-const ThemeChange = () => {
-  const [theme, setTheme] = useState("");
-  const [width, height] = useWindowSize();
-  useEffect(() => {
-    const theme = localStorage.getItem("theme")
-      ? localStorage.getItem("theme")!
-      : "dark";
-    localStorage.setItem("theme", theme);
-    document.documentElement.dataset.theme = theme;
-    setTheme(theme);
-  }, [width, height]);
+import { ThemeContext } from "./ThemeProvider";
 
+const ThemeChangeBtn = () => {
+  const {theme,setTheme} = useContext(ThemeContext);
   return (
     <>
       {theme !== "" ? (
         <button
           className="btn btn-primary"
           onClick={() => {
-            let theme = localStorage.getItem("theme") ?? "";
             if (theme === "dark") {
-              localStorage.setItem("theme", "light");
-              document.documentElement.dataset.theme = "light";
               setTheme("light");
             } else if (theme === "light") {
-              localStorage.setItem("theme", "dark");
-              document.documentElement.dataset.theme = "dark";
               setTheme("dark");
             }
           }}
@@ -70,7 +56,7 @@ const NavBar = () => {
   //hooks
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="navbar bg-base-100 px-[5%] py-6">
+    <div className="navbar bg-base-100 bg-opacity-30 px-[5%] py-6 fixed top-0 w-screen z-50">
       <div className="navbar-start">
         <a className="text-3xl font-black">RUTA</a>
       </div>
@@ -85,7 +71,7 @@ const NavBar = () => {
             ))}
           </ul>
           <div className="ml-5">
-            <ThemeChange />
+            <ThemeChangeBtn />
           </div>
         </div>
         {/*mobile: navbar-end*/}
@@ -110,7 +96,7 @@ const NavBar = () => {
                   </li>
                 ))}
                 <li className="mt-10 mx-[25%]">
-                  <ThemeChange />
+                  <ThemeChangeBtn />
                 </li>
               </ul>
             </div>
