@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import Image from "next/image";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { ThemeContext } from "../components/ThemeProvider";
 
@@ -30,10 +31,9 @@ const Home = () => {
               /* Interests content */
               <div className="text-center">
                 <span className="text-2xl">
-                  I am a Full 'Interests' (not only stack) Developer
-                  across a number of fields, including{" "}
-                  <strong>Data Science</strong>, <strong>Web Dev</strong>,{" "}
-                  <strong>Native App Dev</strong>,{" "}
+                  I am a Full 'Interests' (not only stack) Developer across a
+                  number of fields, including <strong>Data Science</strong>,{" "}
+                  <strong>Web Dev</strong>, <strong>Native App Dev</strong>,{" "}
                   <strong>Cloud Computing</strong>,
                   <strong> Blockchain Dev</strong>,{" "}
                   <strong>Audio Programming</strong>,{" "}
@@ -47,8 +47,18 @@ const Home = () => {
             {tab === Tab.Education && (
               /*Education content*/
               <div className="flex justify-center items-center space-x-10">
-                <img className="w-[8rem]" src="/CUB.svg" alt="" />
-                <img className="w-[6.5rem]" src="/NUS.png" alt="" />
+                <div>
+                  <Image height={120} width={120} src="/CUB.png" alt="" />
+                </div>
+                <div>
+                  <Image
+                    height={120}
+                    width={95}
+                    className="w-[6.5rem]"
+                    src="/NUS.png"
+                    alt=""
+                  />
+                </div>
               </div>
             )}
             {tab === Tab.Concat && (
@@ -57,7 +67,10 @@ const Home = () => {
                 <a href="https://github.com/RutaTang" target="_blank">
                   <Github size={40} />
                 </a>
-                <a href="https://www.linkedin.com/in/weizhi-tang-3a5137191/" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/weizhi-tang-3a5137191/"
+                  target="_blank"
+                >
                   <Linkedin size={40} />
                 </a>
                 <a href="https://twitter.com/TangRuta" target="_blank">

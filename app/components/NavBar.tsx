@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import Link from "next/link";
 
 import { ThemeContext } from "./ThemeProvider";
 
@@ -66,7 +67,7 @@ const NavBar = () => {
           <ul className="menu menu-horizontal">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a href={item.link}>{item.name}</a>
+                <Link href={item.link}>{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -92,7 +93,7 @@ const NavBar = () => {
               <ul className="menu mt-3 ">
                 {menuItems.map((item) => (
                   <li className="flex items-center" key={item.name}>
-                    <a href={item.link}>{item.name}</a>
+                    <Link href={item.link}>{item.name}</Link>
                   </li>
                 ))}
                 <li className="mt-10 mx-[25%]">
