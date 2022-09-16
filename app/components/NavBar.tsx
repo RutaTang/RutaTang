@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
 import { ThemeContext } from "./ThemeProvider";
@@ -65,7 +65,7 @@ const NavBar = () => {
         <div className="flex items-center invisible md:visible">
           <ul className="menu menu-horizontal">
             {menuItems.map((item) => (
-              <li>
+              <li key={item.name}>
                 <a href={item.link}>{item.name}</a>
               </li>
             ))}
@@ -91,7 +91,7 @@ const NavBar = () => {
               />
               <ul className="menu mt-3 ">
                 {menuItems.map((item) => (
-                  <li className="flex items-center">
+                  <li className="flex items-center" key={item.name}>
                     <a href={item.link}>{item.name}</a>
                   </li>
                 ))}
