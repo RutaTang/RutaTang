@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Ruta Tang</title>
           {/* code block syntax highlighting style */}
           <link
             rel="stylesheet"
