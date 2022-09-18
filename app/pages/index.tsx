@@ -12,24 +12,21 @@ const Home = () => {
   const { theme } = useContext(ThemeContext);
   const [tab, setTab] = useState(Tab.Interests);
   return (
-    <div className="min-h-screen min-w-screen pt-24">
+    <div className="h-screen w-screen">
       {/*Background*/}
-      <Image
-        src={
-          theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"
-        }
-        layout="fill"
-        height="100vh"
-        width="100vw"
-        objectFit="cover"
-        className="-z-50 absolute top-0"
-      />
+      <div className="w-screen h-screen -z-50 absolute top-0">
+        <Image
+          src={theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
       {/*Content*/}
-      <div className="w-full mt-[10%]">
+      <div className="w-screen relative top-[16%] md:top-[25%]">
         <h1 className="text-center text-6xl font-black gradient">
           Welcome to Ruta&apos;s Web
         </h1>
-        <div className="w-full flex-col mt-10 space-y-10">
+        <div className="w-full mt-10 space-y-10">
           <div className="w-[80%] mx-auto text-left md:h-[20vh] h-[40vh] overflow-scroll bg-transparent">
             {tab === Tab.Interests && (
               /* Interests content */
