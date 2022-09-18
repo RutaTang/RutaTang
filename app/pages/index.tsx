@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+
 import { ThemeContext } from "../components/ThemeProvider";
 
 enum Tab {
@@ -14,13 +16,20 @@ const Home = () => {
   return (
     <div className="h-screen w-screen">
       {/*Background*/}
-      <div className="w-screen h-screen -z-50 absolute top-0">
+      <motion.div
+        className="w-screen h-screen -z-50 absolute top-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{
+          duration: 2,
+        }}
+      >
         <Image
           src={theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"}
           layout="fill"
           objectFit="cover"
         />
-      </div>
+      </motion.div>
       {/*Content*/}
       <div className="w-screen relative top-[16%] md:top-[25%]">
         <h1 className="text-center text-6xl font-black gradient">
