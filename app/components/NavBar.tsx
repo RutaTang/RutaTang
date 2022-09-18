@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ThemeContext } from "./ThemeProvider";
 
 const ThemeChangeBtn = () => {
-  const {theme,setTheme} = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   return (
     <>
       {theme !== "" ? (
@@ -59,7 +59,9 @@ const NavBar = () => {
   return (
     <div className="navbar bg-base-100 bg-opacity-30 px-[5%] py-6 fixed top-0 w-screen z-50">
       <div className="navbar-start">
-        <a className="text-3xl font-black">RUTA</a>
+        <Link href="/">
+          <strong className="text-2xl font-black">RUTA</strong>
+        </Link>
       </div>
       <div className="navbar-end ">
         {/* desktop: navbar-end */}

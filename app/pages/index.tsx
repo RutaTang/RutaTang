@@ -12,16 +12,19 @@ const Home = () => {
   const { theme } = useContext(ThemeContext);
   const [tab, setTab] = useState(Tab.Interests);
   return (
-    <div
-      style={{
-        backgroundPosition:"center",
-        backgroundImage:
-          theme === "light"
-            ? "url('/Moon-Light.svg')"
-            : "url('/Moon-Dark.svg')",
-      }}
-      className="min-h-screen min-w-screen pt-24"
-    >
+    <div className="min-h-screen min-w-screen pt-24">
+      {/*Background*/}
+      <Image
+        src={
+          theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"
+        }
+        layout="fill"
+        height="100vh"
+        width="100vw"
+        objectFit="cover"
+        className="-z-50 absolute top-0"
+      />
+      {/*Content*/}
       <div className="w-full mt-[10%]">
         <h1 className="text-center text-6xl font-black gradient">
           Welcome to Ruta&apos;s Web
