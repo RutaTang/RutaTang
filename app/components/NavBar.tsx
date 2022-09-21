@@ -42,10 +42,6 @@ const NavBar = () => {
       link: "/blog",
     },
     {
-      name: "About",
-      link: "/about",
-    },
-    {
       name: "Apps",
       link: "/apps",
     },

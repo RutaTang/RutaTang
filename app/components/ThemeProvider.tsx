@@ -1,10 +1,7 @@
 import {
   createContext,
-  Dispatch,
   FC,
-  SetStateAction,
   useEffect,
-  useLayoutEffect,
   useState,
 } from "react";
 import { useWindowSize } from "@react-hook/window-size";
