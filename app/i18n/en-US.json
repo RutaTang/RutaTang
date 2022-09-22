@@ -1,3 +1,11 @@
 {
-  "index.greeting": "Welcome to Ruta's World"
+  "greeting": "Welcome to Ruta's World",
+  "interests": "I am a Full &apos;Interests&apos; (not only stack) Developer across a number of fields, including Data Science, Web Dev,Native App Dev,Cloud Computing, Blockchain Dev,Audio Programming,Cognitive Science,Psychology, Finance,and Economics . I am still in the progress of digging into them and learning and exploring more fields.",
+  "tab.interests": "Interests",
+  "tab.education": "Education",
+  "tab.contact": "Contact",
+  "navbar.home": "Home",
+  "navbar.blog": "Blog",
+  "navbar.apps": "Apps",
+  "navbar.opensource": "Open Source"
 }

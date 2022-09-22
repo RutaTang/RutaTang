@@ -3,6 +3,7 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 import { ThemeContext } from "./ThemeProvider";
+import { FormattedMessage } from "react-intl";
 
 const ThemeChangeBtn = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -34,19 +35,19 @@ const NavBar = () => {
   //data
   const menuItems = [
     {
-      name: "Home",
+      i18nID: "navbar.home",
       link: "/",
     },
     {
-      name: "Blog",
+      i18nID: "navbar.blog",
       link: "/blog",
     },
     {
-      name: "Apps",
+      i18nID: "navbar.apps",
       link: "/apps",
     },
     {
-      name: "Open Source",
+      i18nID: "navbar.open-source",
       link: "/open-source",
     },
   ];
@@ -64,8 +65,8 @@ const NavBar = () => {
         <div className="flex items-center invisible md:visible">
           <ul className="menu menu-horizontal">
             {menuItems.map((item) => (
-              <li key={item.name}>
-                <Link href={item.link}>{item.name}</Link>
+              <li key={item.i18nID}>
+                <Link href={item.link}><span><FormattedMessage id={item.i18nID}/></span></Link>
               </li>
             ))}
           </ul>
@@ -90,8 +91,8 @@ const NavBar = () => {
               />
               <ul className="menu mt-3 ">
                 {menuItems.map((item) => (
-                  <li className="flex items-center" key={item.name}>
-                    <Link href={item.link}>{item.name}</Link>
+                  <li className="flex items-center" key={item.i18nID}>
+                    <Link href={item.link}><span><FormattedMessage id={item.i18nID}/></span></Link>
                   </li>
                 ))}
                 <li className="mt-10 mx-[25%]">

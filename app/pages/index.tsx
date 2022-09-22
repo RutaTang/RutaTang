@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import {FormattedMessage} from 'react-intl'
+import { FormattedMessage } from "react-intl";
 
 import { ThemeContext } from "../components/ThemeProvider";
 
@@ -35,7 +35,7 @@ const Home = () => {
       <div className="w-screen relative top-[16%] md:top-[25%]">
         <h1 className="text-center text-6xl font-black gradient">
           <FormattedMessage
-            id="index.greeting"
+            id="greeting"
             defaultMessage="Welcom to Ruta's Web"
           />
         </h1>
@@ -43,20 +43,8 @@ const Home = () => {
           <div className="w-[80%] mx-auto text-left md:h-[20vh] h-[40vh] overflow-scroll bg-transparent">
             {tab === Tab.Interests && (
               /* Interests content */
-              <div className="text-center">
-                <span className="text-2xl">
-                  I am a Full &apos;Interests&apos; (not only stack) Developer
-                  across a number of fields, including{" "}
-                  <strong>Data Science</strong>, <strong>Web Dev</strong>,{" "}
-                  <strong>Native App Dev</strong>,{" "}
-                  <strong>Cloud Computing</strong>,
-                  <strong> Blockchain Dev</strong>,{" "}
-                  <strong>Audio Programming</strong>,{" "}
-                  <strong>Cognitive Science</strong>,{" "}
-                  <strong>Psychology</strong>,<strong> Finance</strong>, and{" "}
-                  <strong>Economics</strong>. I am still in the progress of
-                  digging into them and learning and exploring more fields.
-                </span>
+              <div className="text-center text-2xl">
+                <FormattedMessage id="interests" />
               </div>
             )}
             {tab === Tab.Education && (
@@ -113,7 +101,10 @@ const Home = () => {
                 tab === Tab.Interests ? "tab tab-bordered tab-active" : "tab"
               }
             >
-              Interests
+              <FormattedMessage
+                id="tab.interests"
+                defaultMessage={`Interests`}
+              />
             </a>
             <a
               onClick={() => setTab(Tab.Education)}
@@ -121,7 +112,10 @@ const Home = () => {
                 tab === Tab.Education ? "tab tab-bordered tab-active" : "tab"
               }
             >
-              Education
+              <FormattedMessage
+                id="tab.education"
+                defaultMessage={`Interests`}
+              />
             </a>
             <a
               onClick={() => setTab(Tab.Concat)}
@@ -129,7 +123,10 @@ const Home = () => {
                 tab === Tab.Concat ? "tab tab-bordered tab-active" : "tab"
               }
             >
-              Concat
+              <FormattedMessage
+                id="tab.contact"
+                defaultMessage={`Contact`}
+              />
             </a>
           </div>
         </div>
