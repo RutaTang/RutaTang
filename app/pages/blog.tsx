@@ -1,6 +1,6 @@
 import Image from "next/image";
 import matter from "gray-matter";
-import { readdirSync, readFileSync, existsSync } from "fs";
+import { readdirSync, readFileSync} from "fs";
 import path from "path";
 import Link from "next/link";
 import { useRouter } from "next/router";
