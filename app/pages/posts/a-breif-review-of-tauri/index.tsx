@@ -5,7 +5,9 @@ import dynamic from "next/dynamic";
 
 const Post = () => {
   const { locale } = useRouter();
-  const DynamicArticle = dynamic(() => import(`./i18n/${locale}/index.mdx`), {});
+  const DynamicArticle = locale
+    ? dynamic(() => import(`./i18n/${locale}/index.mdx`), {})
+    : () => null;
   return (
     <MDArticleWrapper>
       <DynamicArticle />

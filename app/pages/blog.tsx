@@ -79,7 +79,7 @@ const Blog = (props: BlogProps) => {
     <div className="pt-32 w-full">
       <div className="w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/*Card*/}
-        {allPostInfos.map((postInfo) => {
+        {locale && allPostInfos.map((postInfo) => {
           return (
             <Link
               href={`/posts/${postInfo.globalNameID}`}
@@ -87,9 +87,9 @@ const Blog = (props: BlogProps) => {
             >
               <div className="cursor-pointer">
                 <Card
-                  coverBase64={postInfo.postInfoWithLocale[locale!].coverBase64}
-                  title={postInfo.postInfoWithLocale[locale!].title}
-                  description={postInfo.postInfoWithLocale[locale!].description}
+                  coverBase64={postInfo.postInfoWithLocale[locale].coverBase64}
+                  title={postInfo.postInfoWithLocale[locale].title}
+                  description={postInfo.postInfoWithLocale[locale].description}
                 />
               </div>
             </Link>
