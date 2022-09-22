@@ -7,13 +7,13 @@ import { useRouter } from "next/router";
 
 // Get all post meta data from its corresponding .meta file
 export async function getStaticProps() {
-  const postsFolderPath = path.join(process.cwd(), "pages/posts");
+  const postsFolderPath = path.join(process.cwd(), "posts");
   const folderNames = readdirSync(postsFolderPath);
 
   const allPostInfos = folderNames
     .filter((folderName) => !folderName.startsWith("."))
     .map((folderName) => {
-      const i18nFullFolderPath = path.join(postsFolderPath, folderName, "i18n");
+      const i18nFullFolderPath = path.join(postsFolderPath, folderName);
       const i18nFolderNames = readdirSync(i18nFullFolderPath).filter(
         (fn) => !fn.startsWith(".")
       );
