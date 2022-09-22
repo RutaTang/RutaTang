@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 import { ThemeContext } from "./ThemeProvider";
 import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 const ThemeChangeBtn = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -28,6 +29,24 @@ const ThemeChangeBtn = () => {
         </div>
       )}
     </>
+  );
+};
+const LanguageChangeBtn = () => {
+  const router = useRouter();
+  return (
+    <select
+      name="lang"
+      defaultValue={router.locale}
+      className="appearance-none bg-transparent outline-none text-primary"
+      onChange={(e) => {
+        router.push(router.pathname, router.pathname, {
+          locale: e.target.value,
+        });
+      }}
+    >
+      <option value="zh-CN">中文</option>
+      <option value="en-US">English</option>
+    </select>
   );
 };
 
@@ -66,10 +85,17 @@ const NavBar = () => {
           <ul className="menu menu-horizontal">
             {menuItems.map((item) => (
               <li key={item.i18nID}>
-                <Link href={item.link}><span><FormattedMessage id={item.i18nID}/></span></Link>
+                <Link href={item.link}>
+                  <span>
+                    <FormattedMessage id={item.i18nID} />
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
+          <div className="ml-3">
+            <LanguageChangeBtn />
+          </div>
           <div className="ml-5">
             <ThemeChangeBtn />
           </div>
@@ -92,7 +118,11 @@ const NavBar = () => {
               <ul className="menu mt-3 ">
                 {menuItems.map((item) => (
                   <li className="flex items-center" key={item.i18nID}>
-                    <Link href={item.link}><span><FormattedMessage id={item.i18nID}/></span></Link>
+                    <Link href={item.link}>
+                      <span>
+                        <FormattedMessage id={item.i18nID} />
+                      </span>
+                    </Link>
                   </li>
                 ))}
                 <li className="mt-10 mx-[25%]">
