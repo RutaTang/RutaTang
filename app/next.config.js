@@ -11,6 +11,10 @@ const withMDX = require("@next/mdx")({
 const RegularNextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  i18n: {
+    locales: ["en-US","zh-CN"],
+    defaultLocale: "en-US",
+  }
 };
 
 module.exports = withMDX({

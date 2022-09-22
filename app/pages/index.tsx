@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import {FormattedMessage} from 'react-intl'
 
 import { ThemeContext } from "../components/ThemeProvider";
 
@@ -33,7 +34,10 @@ const Home = () => {
       {/*Content*/}
       <div className="w-screen relative top-[16%] md:top-[25%]">
         <h1 className="text-center text-6xl font-black gradient">
-          Welcome to Ruta&apos;s Web
+          <FormattedMessage
+            id="index.greeting"
+            defaultMessage="Welcom to Ruta's Web"
+          />
         </h1>
         <div className="w-full mt-10 space-y-10">
           <div className="w-[80%] mx-auto text-left md:h-[20vh] h-[40vh] overflow-scroll bg-transparent">
