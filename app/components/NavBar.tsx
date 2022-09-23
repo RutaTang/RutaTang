@@ -1,5 +1,5 @@
 import { useCallback, useContext, useState } from "react";
-import { Sun, Moon, Menu, X, Languages } from "lucide-react";
+import { Sun, Moon, Menu, X, Languages, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 
 import { ThemeContext } from "./ThemeProvider";
@@ -32,7 +32,7 @@ const ThemeChangeBtn = () => {
   );
 };
 
-const LanguageChangeBtn = () => {
+const LanguageChangeBtnDesktop = () => {
   const router = useRouter();
   const routerPushWithLocale = useCallback(
     (locale: string) => {
@@ -41,13 +41,13 @@ const LanguageChangeBtn = () => {
     [router]
   );
   return (
-    <div className="dropdown">
+    <div className="dropdown justify-center">
       <label tabIndex={0} className="btn m-1">
         <Languages />
       </label>
       <ul
         tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        className="dropdown-content menu p-2 bg-base-100 rounded-box w-52"
       >
         <li>
           <button onClick={() => routerPushWithLocale("en-US")}>English</button>
@@ -56,6 +56,31 @@ const LanguageChangeBtn = () => {
           <button onClick={() => routerPushWithLocale("zh-CN")}>中文</button>
         </li>
       </ul>
+    </div>
+  );
+};
+
+const LanguageChangeBtnMobile = () => {
+  const router = useRouter();
+  const routerPushWithLocale = useCallback(
+    (locale: string) => {
+      router.push(router.pathname, router.pathname, { locale });
+    },
+    [router]
+  );
+  const [showMenu, setShowMenu] = useState(false);
+  return (
+    <div className="flex flex-col w-full bg-transparent active:text-inherit">
+      <div className="flex" onClick={()=>{setShowMenu((sm)=>!sm)}}>
+        <Languages />
+        {showMenu ? <ChevronUp /> : <ChevronDown/> }
+      </div>
+      {showMenu && (
+        <ul className="space-y-3 text-secondary">
+          <li onClick={() => routerPushWithLocale("en-US")}>Enlish</li>
+          <li onClick={() => routerPushWithLocale("zh-CN")}>中文</li>
+        </ul>
+      )}
     </div>
   );
 };
@@ -104,7 +129,7 @@ const NavBar = () => {
             ))}
           </ul>
           <div className="ml-3">
-            <LanguageChangeBtn />
+            <LanguageChangeBtnDesktop />
           </div>
           <div className="ml-5">
             <ThemeChangeBtn />
@@ -128,13 +153,16 @@ const NavBar = () => {
               <ul className="menu mt-3 ">
                 {menuItems.map((item) => (
                   <li className="flex items-center" key={item.i18nID}>
-                    <Link href={item.link}>
-                      <span>
+                    <Link href={item.link} className="w-full">
+                      <div className="w-full flex justify-center">
                         <FormattedMessage id={item.i18nID} />
-                      </span>
+                      </div>
                     </Link>
                   </li>
                 ))}
+                <li className="flex items-center justify-center text-white">
+                  <LanguageChangeBtnMobile />
+                </li>
                 <li className="mt-10 mx-[25%]">
                   <ThemeChangeBtn />
                 </li>
