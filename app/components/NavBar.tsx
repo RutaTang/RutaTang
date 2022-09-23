@@ -104,6 +104,10 @@ const NavBar = () => {
       i18nID: "navbar.open-source",
       link: "/open-source",
     },
+    {
+      i18nID: "navbar.music",
+      link: "/music",
+    },
   ];
   //hooks
   const [showMenu, setShowMenu] = useState(false);

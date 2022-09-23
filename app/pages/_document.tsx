@@ -1,22 +1,23 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-          <title>Ruta Tang</title>
           {/* code block syntax highlighting style */}
           <link
             rel="stylesheet"
             href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css"
           ></link>
           {/* google analysis tag*/}
-          <script
+          <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-PPH3M52YPX"
-          ></script>
-          <script
+          ></Script>
+          <Script
+            id="google-analytics"
             dangerouslySetInnerHTML={{
               __html: `
   window.dataLayer = window.dataLayer || [];

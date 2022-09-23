@@ -13,6 +13,7 @@ const NotFound = () => {
           src={theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"}
           layout="fill"
           objectFit="cover"
+          alt="Moon"
         />
       </div>
       {/*Content*/}

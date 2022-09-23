@@ -40,6 +40,7 @@ const Home = () => {
           src={theme === "light" ? "/Moon-Light.svg" : "/Moon-Dark.svg"}
           layout="fill"
           objectFit="cover"
+          alt="Background"
         />
       </motion.div>
       {/*Content*/}
