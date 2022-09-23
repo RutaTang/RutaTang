@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Image from "next/image";
 import { ThemeContext } from "../components/ThemeProvider";
+import { FormattedMessage } from "react-intl";
 
 const NotFound = () => {
   const { theme } = useContext(ThemeContext);
@@ -18,7 +19,9 @@ const NotFound = () => {
       <div className="text-center">
         <h1 className="text-6xl font-black">404</h1>
         <h1 className="text-5xl font-black">...</h1>
-        <h1 className="text-5xl font-black mt-5">Find Your Own Way</h1>
+        <h1 className="text-5xl font-black mt-5">
+          <FormattedMessage id="404" />
+        </h1>
       </div>
     </div>
   );

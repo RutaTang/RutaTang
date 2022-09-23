@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
-import { Sun, Moon, Menu, X, ChevronDown } from "lucide-react";
+import { useCallback, useContext, useState } from "react";
+import { Sun, Moon, Menu, X, Languages } from "lucide-react";
 import Link from "next/link";
 
 import { ThemeContext } from "./ThemeProvider";
 import { FormattedMessage } from "react-intl";
-import { useRouter } from "next/router";
+import { useRouter, NextRouter } from "next/router";
 
 const ThemeChangeBtn = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -31,22 +31,32 @@ const ThemeChangeBtn = () => {
     </>
   );
 };
+
 const LanguageChangeBtn = () => {
   const router = useRouter();
+  const routerPushWithLocale = useCallback(
+    (locale: string) => {
+      router.push(router.pathname, router.pathname, { locale });
+    },
+    [router]
+  );
   return (
-    <select
-      name="lang"
-      defaultValue={router.locale}
-      className="appearance-none bg-transparent outline-none text-primary"
-      onChange={(e) => {
-        router.push(router.pathname, router.pathname, {
-          locale: e.target.value,
-        });
-      }}
-    >
-      <option value="zh-CN">中文</option>
-      <option value="en-US">English</option>
-    </select>
+    <div className="dropdown">
+      <label tabIndex={0} className="btn m-1">
+        <Languages />
+      </label>
+      <ul
+        tabIndex={0}
+        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <button onClick={() => routerPushWithLocale("en-US")}>English</button>
+        </li>
+        <li>
+          <button onClick={() => routerPushWithLocale("zh-CN")}>中文</button>
+        </li>
+      </ul>
+    </div>
   );
 };
 
