@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { ThemeContext } from "../components/ThemeProvider";
 
@@ -14,8 +15,18 @@ enum Tab {
 const Home = () => {
   const { theme } = useContext(ThemeContext);
   const [tab, setTab] = useState(Tab.Interests);
+  const intl = useIntl();
   return (
     <div className="h-screen w-screen">
+      {/*SEO Title and Description*/}
+      <Head>
+        <title>{intl.formatMessage({ id: "seo.index.title" })}</title>
+        <meta
+          name="description"
+          content={intl.formatMessage({ id: "seo.index.description" })}
+          key="desc"
+        />
+      </Head>
       {/*Background*/}
       <motion.div
         className="w-screen h-screen -z-50 absolute top-0"
@@ -123,10 +134,7 @@ const Home = () => {
                 tab === Tab.Concat ? "tab tab-bordered tab-active" : "tab"
               }
             >
-              <FormattedMessage
-                id="tab.contact"
-                defaultMessage={`Contact`}
-              />
+              <FormattedMessage id="tab.contact" defaultMessage={`Contact`} />
             </a>
           </div>
         </div>

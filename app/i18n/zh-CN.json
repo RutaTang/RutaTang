@@ -1,6 +1,6 @@
 {
   "greeting": "欢迎来到 Ruta 的世界",
-  "interests":"Hi~, 作为一个兴趣广泛的的开发人员，我应该说不仅是一个Full Stack 开发者而是一个 Full Interests 开发者，我所喜欢和涉及的领域，包括数据科学、Web 开发、原生应用开发、云计算、区块链开发、音频编程、认知科学、心理学、金融和经济学。 目前我还在深入挖掘它们其中几个，并准备学习和探索更多领域。",
+  "interests": "Hi~, 作为一个兴趣广泛的的开发人员，我应该说不仅是一个Full Stack 开发者而是一个 Full Interests 开发者，我所喜欢和涉及的领域，包括数据科学、Web 开发、原生应用开发、云计算、区块链开发、音频编程、认知科学、心理学、金融和经济学。 目前我还在深入挖掘它们其中几个，并准备学习和探索更多领域。",
   "tab.interests": "兴趣",
   "tab.education": "教育",
   "tab.contact": "联系",
@@ -8,5 +8,7 @@
   "navbar.blog": "文章",
   "navbar.apps": "应用",
   "navbar.open-source": "开源",
+  "seo.index.title": "Ruat Tang",
+  "seo.index.description": "一个 Full Interests 开发者的主页，喜欢和涉及的领域包括数据科学、Web 开发、原生应用开发、云计算、区块链开发、音频编程、认知科学、心理学、金融和经济学。",
   "404": "似乎迷路了亲"
 }
