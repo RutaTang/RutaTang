@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { FormattedMessage, useIntl } from "react-intl";
+import { NextSeo } from "next-seo";
 
 import { ThemeContext } from "../components/ThemeProvider";
 
@@ -19,14 +20,10 @@ const Home = () => {
   return (
     <div className="h-screen w-screen">
       {/*SEO Title and Description*/}
-      <Head>
-        <title>{intl.formatMessage({ id: "seo.index.title" })}</title>
-        <meta
-          name="description"
-          content={intl.formatMessage({ id: "seo.index.description" })}
-          key="desc"
-        />
-      </Head>
+      <NextSeo
+        title={intl.formatMessage({ id: "seo.index.title" })}
+        description={intl.formatMessage({ id: "seo.index.description" })}
+      />
       {/*Background*/}
       <motion.div
         className="w-screen h-screen -z-50 absolute top-0"
