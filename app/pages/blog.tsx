@@ -1,6 +1,6 @@
 import Image from "next/image";
 import matter from "gray-matter";
-import { readdirSync, readFileSync} from "fs";
+import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -79,22 +79,26 @@ const Blog = (props: BlogProps) => {
     <div className="pt-32 w-full">
       <div className="w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/*Card*/}
-        {locale && allPostInfos.map((postInfo) => {
-          return (
-            <Link
-              href={`/posts/${postInfo.globalNameID}`}
-              key={postInfo.globalNameID}
-            >
-              <div className="cursor-pointer">
-                <Card
-                  coverBase64={postInfo.postInfoWithLocale[locale].coverBase64}
-                  title={postInfo.postInfoWithLocale[locale].title}
-                  description={postInfo.postInfoWithLocale[locale].description}
-                />
-              </div>
-            </Link>
-          );
-        })}
+        {locale &&
+          allPostInfos.map((postInfo) => {
+            const postMetaData = postInfo.postInfoWithLocale[locale];
+            return (
+              postMetaData && (
+                <Link
+                  href={`/posts/${postInfo.globalNameID}`}
+                  key={postInfo.globalNameID}
+                >
+                  <div className="cursor-pointer">
+                    <Card
+                      coverBase64={postMetaData.coverBase64}
+                      title={postMetaData.title}
+                      description={postMetaData.description}
+                    />
+                  </div>
+                </Link>
+              )
+            );
+          })}
       </div>
     </div>
   );
