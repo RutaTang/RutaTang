@@ -54,7 +54,7 @@ const Post = ({
     : () => null;
   return (
     <MDArticleWrapper>
-      <OutLine items={outLineItems} />
+      {/* <OutLine items={outLineItems} /> */}
       <DynamicArticle />
     </MDArticleWrapper>
   );
