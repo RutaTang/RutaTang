@@ -8,42 +8,13 @@ import OutLine, { OutLineItem } from "../../components/OutLine";
 export async function getStaticProps() {
   //get current file name
   const filename = path.parse(__filename).name;
-  //get outline items
-  const outLineItems: Array<OutLineItem> = [
-    {
-      title: "Cases",
-      href: `#cases`,
-    },
-    {
-      title: "Syntax",
-      href: "#syntax",
-    },
-    { title: "Use sort with range", href: "#sort-with-range" },
-    {
-      title: "Use sort without pattern",
-      href: "#sort-without-pattern",
-    },
-    {
-      title: "Use sort with pattern",
-      href: "#sort-with-pattern",
-    },
-    {
-      title: "Examples",
-      href: "#examples",
-    },
-    {
-      title: "References",
-      href: "#references",
-    }
-  ];
   return {
-    props: { filename, outLineItems },
+    props: { filename},
   };
 }
 
 const Post = ({
   filename,
-  outLineItems,
 }: {
   filename: string;
   outLineItems: Array<OutLineItem>;
@@ -54,7 +25,6 @@ const Post = ({
     : () => null;
   return (
     <MDArticleWrapper>
-      {/* <OutLine items={outLineItems} /> */}
       <DynamicArticle />
     </MDArticleWrapper>
   );
