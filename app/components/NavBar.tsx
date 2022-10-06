@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Sun, Moon, Menu, X, Languages, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ const LanguageChangeBtnDesktop = () => {
   const router = useRouter();
   const routerPushWithLocale = useCallback(
     (locale: string) => {
-      router.push(router.pathname, router.pathname, { locale });
+      router.push(router.asPath, router.asPath, { locale });
     },
     [router]
   );

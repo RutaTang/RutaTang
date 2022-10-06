@@ -36,7 +36,7 @@ export async function getStaticProps() {
         };
       });
       return {
-        globalNameID: folderName,
+        globalNameId: folderName,
         postInfoWithLocale,
       };
     });
@@ -85,8 +85,8 @@ const Blog = (props: BlogProps) => {
             return (
               postMetaData && (
                 <Link
-                  href={`/posts/${postInfo.globalNameID}`}
-                  key={postInfo.globalNameID}
+                  href={`/posts/${postInfo.globalNameId}`}
+                  key={postInfo.globalNameId}
                 >
                   <div className="cursor-pointer">
                     <Card
