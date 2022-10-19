@@ -1,5 +1,6 @@
 <h1 align="center">Hi 👋, I'm Ruta (Weizhi Tang)</h1>
 <h3 align="center">A Full "Interested" Developer and Explorer not limited on Software Engineering, Cloud, Blockchain, AI, Cognitive Science, and Economics</h3>
+<img align="cover" alt="Web Cover" src="Cover.png"/>
 
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=rutatang&label=Profile%20views&color=0e75b6&style=flat" alt="rutatang" /> </p>
 
