@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -7,7 +8,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography"),require('@tailwindcss/line-clamp'),require("daisyui")],
+  plugins: [require('tailwind-scrollbar-hide'),require("@tailwindcss/typography"),require('@tailwindcss/line-clamp'),require("daisyui")],
   daisyui:{
     themes: ["dracula","light"]
   }

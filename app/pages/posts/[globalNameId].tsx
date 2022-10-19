@@ -1,4 +1,3 @@
-import path from "path";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
@@ -9,7 +8,10 @@ const Post = () => {
   const locale = router.locale;
   const { globalNameId } = router.query;
   const DynamicArticle = locale
-    ? dynamic(() => import(`../../posts/${globalNameId}/${locale}/index.mdx`), {})
+    ? dynamic(
+        () => import(`../../posts/${globalNameId}/${locale}/index.mdx`),
+        {}
+      )
     : () => null;
   return (
     <MDArticleWrapper>
