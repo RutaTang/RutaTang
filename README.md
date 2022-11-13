@@ -1,8 +1,8 @@
 <h1 align="center">Hi 👋, I'm Ruta (Weizhi Tang)</h1>
 <h3 align="center">A Full "Interested" and omnivorous Developer and Explorer not limited on Software Engineering, Cloud, Blockchain, AI, Cognitive Science, and Economics</h3>
-<img align="cover" alt="Web Cover" src="Cover.png"/>
+<a href="https://rutatang.com" target="blank"><img align="cover" alt="Web Cover" src="Cover.png"/></a>
 
-<a href="https://rutatang.com/" target="blank"> <img align="center" src="https://komarev.com/ghpvc/?username=rutatang&label=Profile%20views&color=0e75b6&style=flat" alt="rutatang" /></a>
+<p align="center"><img src="https://komarev.com/ghpvc/?username=rutatang&label=Profile%20views&color=0e75b6&style=flat" alt="rutatang" /></p>
 
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=rutatang&row=2&column=3" alt="rutatang" /></a> </p>
 
