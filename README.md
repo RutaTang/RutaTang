@@ -12,7 +12,7 @@
 
 - 📝 I regularly write articles on [My Website](https://www.rutatang.com/blog)
 
-- 👄 I can speak in Chinese (native level), English (frequent level), French (middle level), Korean (very entry level)
+- 👄 I can speak in **Chinese** (native level), **English** (frequent level), **French** (middle level), **Korean** (very entry level)
 
 - 💬 Ask me about **ReactJS, JS/TS, Python, ML/DL/Data Science**
 
