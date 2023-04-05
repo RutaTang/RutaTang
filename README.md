@@ -6,11 +6,13 @@
 
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=rutatang&row=2&column=3" alt="rutatang" /></a> </p>
 
-- 🔭 I’m currently working on **IconStorm**
+- 🔭 I’m currently working on **Encadrer**, a RSS reader
 
-- 🌱 I’m currently learning **Mathematics, Statistics, UI Design**
+- 🌱 I’m currently learning and consolidating **Mathematics, Statistics, UI Design, Database, Operating System**
 
 - 📝 I regularly write articles on [My Website](https://www.rutatang.com/blog)
+
+- 👄 I can speak in Chinese (native level), English (frequent level), French (middle level), Korean (very entry level)
 
 - 💬 Ask me about **ReactJS, JS/TS, Python, ML/DL/Data Science**
 
